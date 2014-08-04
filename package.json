@@ -1,0 +1,35 @@
+{
+  "name": "grappa",
+  "version": "0.0.0",
+  "description": "Digests biscotto metadata",
+  "main": "./lib/grappa.js",
+  "scripts": {
+    "test": "grunt test",
+    "prepublish": "grunt clean lint coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atom/grappa.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/atom/grappa/raw/master/LICENSE.md"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/atom/grappa/issues"
+  },
+  "homepage": "http://atom.github.io/grappa",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "jasmine-focused": "1.x",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-cli": "~0.1.8",
+    "grunt": "~0.4.1",
+    "grunt-shell": "~0.2.2",
+    "grunt-coffeelint": "0.0.6",
+    "rimraf": "~2.1"
+  }
+}
