@@ -14,41 +14,43 @@ class Digester
       for filename, fileData of files
         @current.filename = filename
         @current.objects = fileData.objects
+        @current.sections = @extractSections(fileData.objects)
+
         for row, columnsObj of fileData.objects
           for column, object of columnsObj
             switch object.type
               when 'class'
                 klass = @digestClass(object)
                 classes.push klass if klass?
-              # when 'comment'
 
     {classes}
 
-  digestClass: (klass) ->
-    classDoc = @docFromDocString(klass.doc)
-    return unless classDoc and classDoc.visibility is 'Essential'
+  digestClass: (classEntity) ->
+    classDoc = @docFromDocString(classEntity.doc)
+    return unless classDoc
 
-    classMethods = @extractEntities(klass.classProperties, 'function')
-    instanceMethods = @extractEntities(klass.prototypeProperties, 'function')
+    sections = @filterSectionsForRowRange(classEntity.range[0][0], classEntity.range[1][0])
+    classMethods = @extractEntities(sections, classEntity.classProperties, 'function')
+    instanceMethods = @extractEntities(sections, classEntity.prototypeProperties, 'function')
+
+    # Only sections that are used should be in the output
+    filteredSections = []
+    for section in sections
+      for method in classMethods.concat instanceMethods
+        if section.name is method.sectionName
+          filteredSections.push(section)
+          break
 
     {
-      name: klass.name
+      name: classEntity.name
       filename: @current.filename
       visibility: classDoc.visibility
+      sections: filteredSections
       classMethods: classMethods
       instanceMethods: instanceMethods
     }
 
-  extractEntities: (entityPositions, entityType) ->
-    entities = []
-    for entityPosition in entityPositions
-      entityObject = @objectFromPosition(entityPosition)
-      if entityObject.type is entityType
-        entity = @digestEntity(entityObject, entityPosition)
-        entities.push entity if entity?
-    entities
-
-  digestEntity: (entity, entityPosition) ->
+  digestEntity: (sections, entity, entityPosition) ->
     doc = @docFromDocString(entity.doc)
     return unless doc?
 
@@ -56,12 +58,53 @@ class Digester
       name: entity.name
       visibility: doc.visibility
       summary: doc.summary
+      sectionName: @sectionNameForRow(sections, entityPosition[0])
       srcUrl: @linkForPosition(entityPosition)
     }
 
   ###
   Section: Utils
   ###
+
+  extractEntities: (sections, entityPositions, entityType) ->
+    entities = []
+    for entityPosition in entityPositions
+      entityObject = @objectFromPosition(entityPosition)
+      if entityObject.type is entityType
+        entity = @digestEntity(sections, entityObject, entityPosition)
+        entities.push entity if entity?
+    entities
+
+  extractSections: (objects) ->
+    sections = []
+    for row, columnsObj of objects
+      for column, object of columnsObj
+        if object.type is 'comment'
+          section = @sectionFromCommentEntity(object)
+          sections.push section if section?
+    sections
+
+  sectionFromCommentEntity: (commentEntity) ->
+    doc = atomdoc.parse(commentEntity.doc)
+    if doc?.visibility is 'Section'
+      name: doc.summary
+      description: doc.description?.replace(doc.summary, '').trim() ? ''
+      startRow: commentEntity.range[0][0]
+      endRow: commentEntity.range[1][0]
+    else
+      null
+
+  filterSectionsForRowRange: (startRow, endRow) ->
+    sections = []
+    for section in @current.sections
+      sections.push section if section.startRow >= startRow and section.startRow <= endRow
+    sections.sort (sec1, sec2) -> sec1.startRow - sec2.startRow
+    sections
+
+  sectionNameForRow: (sections, row) ->
+    for section in sections
+      return section.name if row > section.startRow
+    null
 
   docFromDocString: (docString) ->
     classDoc = atomdoc.parse(docString) if docString?
@@ -78,7 +121,7 @@ class Digester
 
     repo = @current.package.repository.replace(/\.git$/i, '')
     filePath = path.normalize "/blob/v#{@current.package.version}/#{@current.filename}"
-    "#{repo}#{filePath}#L#{position[0]}"
+    "#{repo}#{filePath}#L#{position[0] + 1}"
 
 module.exports =
   digest: (metadata) ->
