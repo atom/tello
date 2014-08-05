@@ -1,2 +1,2 @@
-# {parse} = require './parser'
-# module.exports = {parse}
+{digest} = require './digester'
+module.exports = {digest}

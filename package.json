@@ -22,6 +22,8 @@
   },
   "homepage": "http://atom.github.io/grappa",
   "dependencies": {
+    "atomdoc": "~0.0",
+    "underscore": "~1.6"
   },
   "devDependencies": {
     "jasmine-focused": "1.x",
