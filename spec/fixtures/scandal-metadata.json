@@ -1,0 +1,2667 @@
+[
+    {
+        "main": "./src/scandal.coffee",
+        "repository": "https://github.com/atom/scandal.git",
+        "version": "1.0.1",
+        "files": {
+            "./src/chunked-executor.coffee": {
+                "objects": {
+                    "0": {
+                        "23": {
+                            "name": "20",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    0,
+                                    23
+                                ],
+                                [
+                                    0,
+                                    24
+                                ]
+                            ]
+                        }
+                    },
+                    "21": {
+                        "0": {
+                            "type": "class",
+                            "name": "ChunkedExecutor",
+                            "bindingType": "exports",
+                            "classProperties": [],
+                            "prototypeProperties": [
+                                [
+                                    30,
+                                    15
+                                ],
+                                [
+                                    42,
+                                    11
+                                ],
+                                [
+                                    52,
+                                    8
+                                ],
+                                [
+                                    63,
+                                    29
+                                ],
+                                [
+                                    66,
+                                    15
+                                ],
+                                [
+                                    73,
+                                    19
+                                ]
+                            ],
+                            "doc": " Public: {ChunkedExecutor} will execute on an {Array} paths in a pathQueue only\nrunning a max of 20 of them concurrently.\n\n## Examples\n\n  ```coffee\n  paths = ['/path/to/somefile.coffee', '/path/to/someotherfile.coffee']\n\n  searchPath = (filePath, callback) =>\n    # Do something with the path here...\n    callback()\n\n  executor = new ChunkedExecutor(paths, searchPath).execute ->\n    console.log 'done!'\n\n  # Now you can push more on the queue\n  executor.push '/path/to/lastone.coffee'\n  ``` ",
+                            "range": [
+                                [
+                                    21,
+                                    0
+                                ],
+                                [
+                                    75,
+                                    38
+                                ]
+                            ]
+                        }
+                    },
+                    "30": {
+                        "15": {
+                            "name": "constructor",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "pathQueue",
+                                null
+                            ],
+                            "range": [
+                                [
+                                    30,
+                                    15
+                                ],
+                                [
+                                    35,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "35": {
+                        "2": {
+                            "type": "comment",
+                            "doc": "\nSection: Execution\n",
+                            "range": [
+                                [
+                                    35,
+                                    2
+                                ],
+                                [
+                                    37,
+                                    4
+                                ]
+                            ]
+                        }
+                    },
+                    "42": {
+                        "11": {
+                            "name": "execute",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                null
+                            ],
+                            "range": [
+                                [
+                                    42,
+                                    11
+                                ],
+                                [
+                                    52,
+                                    1
+                                ]
+                            ],
+                            "doc": " Public: Begin execution of the `pathQueue`\n\n* `doneCallback` {Function} callback that will be called when execution is finished. "
+                        }
+                    },
+                    "52": {
+                        "8": {
+                            "name": "push",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "filePath"
+                            ],
+                            "range": [
+                                [
+                                    52,
+                                    8
+                                ],
+                                [
+                                    59,
+                                    1
+                                ]
+                            ],
+                            "doc": " Public: Push a new path on the queue\n\nMay or may not execute immediately.\n\n* `filePath` {String} path to a file "
+                        }
+                    },
+                    "59": {
+                        "2": {
+                            "type": "comment",
+                            "doc": "\nSection: Lifecycle Methods\n",
+                            "range": [
+                                [
+                                    59,
+                                    2
+                                ],
+                                [
+                                    61,
+                                    4
+                                ]
+                            ]
+                        }
+                    },
+                    "63": {
+                        "29": {
+                            "name": "executeNextPathIfPossible",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    63,
+                                    29
+                                ],
+                                [
+                                    66,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "66": {
+                        "15": {
+                            "name": "executePath",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "filePath"
+                            ],
+                            "range": [
+                                [
+                                    66,
+                                    15
+                                ],
+                                [
+                                    73,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "73": {
+                        "19": {
+                            "name": "checkIfFinished",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    73,
+                                    19
+                                ],
+                                [
+                                    75,
+                                    38
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    }
+                },
+                "exports": 21
+            },
+            "./src/chunked-line-reader.coffee": {
+                "objects": {
+                    "0": {
+                        "5": {
+                            "name": "fs",
+                            "type": "import",
+                            "range": [
+                                [
+                                    0,
+                                    5
+                                ],
+                                [
+                                    0,
+                                    17
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "fs",
+                            "builtin": true
+                        }
+                    },
+                    "1": {
+                        "15": {
+                            "name": "isBinaryFile",
+                            "type": "import",
+                            "range": [
+                                [
+                                    1,
+                                    15
+                                ],
+                                [
+                                    1,
+                                    37
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "isbinaryfile@~2.0.1"
+                        }
+                    },
+                    "2": {
+                        "1": {
+                            "type": "import",
+                            "range": [
+                                [
+                                    2,
+                                    1
+                                ],
+                                [
+                                    2,
+                                    8
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "stream",
+                            "builtin": true,
+                            "name": "Readable",
+                            "exportsProperty": "Readable"
+                        }
+                    },
+                    "4": {
+                        "14": {
+                            "name": "lastIndexOf",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [
+                                "buffer",
+                                "length",
+                                "char"
+                            ],
+                            "range": [
+                                [
+                                    4,
+                                    14
+                                ],
+                                [
+                                    20,
+                                    39
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "22": {
+                        "0": {
+                            "type": "class",
+                            "name": "ChunkedLineReader",
+                            "bindingType": "exports",
+                            "classProperties": [
+                                [
+                                    24,
+                                    15
+                                ],
+                                [
+                                    25,
+                                    18
+                                ],
+                                [
+                                    26,
+                                    21
+                                ]
+                            ],
+                            "prototypeProperties": [
+                                [
+                                    28,
+                                    15
+                                ],
+                                [
+                                    31,
+                                    16
+                                ],
+                                [
+                                    37,
+                                    9
+                                ]
+                            ],
+                            "doc": " Private: Will ensure data will be read on a line boundary. So this will always do the\nright thing:\n\n  lines = []\n  reader = new ChunkedLineReader('some/file.txt')\n  reader.on 'data', (chunk) ->\n    line = chunk.toString().replace(/\\r?\\n?$/, '')\n    lines = lines.concat(line.split(/\\r\\n|\\n|\\r/))\n\nThis will collect all the lines in the file, or you can process each line in\nthe data handler for more efficiency. ",
+                            "range": [
+                                [
+                                    22,
+                                    0
+                                ],
+                                [
+                                    81,
+                                    17
+                                ]
+                            ]
+                        }
+                    },
+                    "24": {
+                        "15": {
+                            "name": "CHUNK_SIZE",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    24,
+                                    15
+                                ],
+                                [
+                                    24,
+                                    19
+                                ]
+                            ],
+                            "bindingType": "classProperty"
+                        }
+                    },
+                    "25": {
+                        "18": {
+                            "name": "chunkedBuffer",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    25,
+                                    18
+                                ],
+                                [
+                                    25,
+                                    21
+                                ]
+                            ],
+                            "bindingType": "classProperty"
+                        }
+                    },
+                    "26": {
+                        "21": {
+                            "name": "headerBuffer",
+                            "type": "function",
+                            "range": [
+                                [
+                                    26,
+                                    21
+                                ],
+                                [
+                                    26,
+                                    31
+                                ]
+                            ],
+                            "bindingType": "classProperty",
+                            "doc": null
+                        }
+                    },
+                    "28": {
+                        "15": {
+                            "name": "constructor",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                null
+                            ],
+                            "range": [
+                                [
+                                    28,
+                                    15
+                                ],
+                                [
+                                    31,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "31": {
+                        "16": {
+                            "name": "isBinaryFile",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    31,
+                                    16
+                                ],
+                                [
+                                    37,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "37": {
+                        "9": {
+                            "name": "_read",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    37,
+                                    9
+                                ],
+                                [
+                                    81,
+                                    17
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    }
+                },
+                "exports": 22
+            },
+            "./src/chunked-scanner.coffee": {
+                "objects": {
+                    "0": {
+                        "18": {
+                            "name": "ChunkedExecutor",
+                            "type": "import",
+                            "range": [
+                                [
+                                    0,
+                                    18
+                                ],
+                                [
+                                    0,
+                                    45
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./chunked-executor"
+                        }
+                    },
+                    "3": {
+                        "0": {
+                            "type": "class",
+                            "name": "ChunkedScanner",
+                            "bindingType": "exports",
+                            "classProperties": [],
+                            "prototypeProperties": [
+                                [
+                                    4,
+                                    15
+                                ],
+                                [
+                                    8,
+                                    11
+                                ],
+                                [
+                                    15,
+                                    22
+                                ],
+                                [
+                                    19,
+                                    19
+                                ]
+                            ],
+                            "doc": "~Private~",
+                            "range": [
+                                [
+                                    3,
+                                    0
+                                ],
+                                [
+                                    27,
+                                    14
+                                ]
+                            ]
+                        }
+                    },
+                    "4": {
+                        "15": {
+                            "name": "constructor",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                null,
+                                "execPathFn"
+                            ],
+                            "range": [
+                                [
+                                    4,
+                                    15
+                                ],
+                                [
+                                    8,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "8": {
+                        "11": {
+                            "name": "execute",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "doneCallback"
+                            ],
+                            "range": [
+                                [
+                                    8,
+                                    11
+                                ],
+                                [
+                                    15,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "15": {
+                        "22": {
+                            "name": "onFinishedScanning",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    15,
+                                    22
+                                ],
+                                [
+                                    19,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "19": {
+                        "19": {
+                            "name": "checkIfFinished",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    19,
+                                    19
+                                ],
+                                [
+                                    27,
+                                    14
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    }
+                },
+                "exports": 3
+            },
+            "./src/multi-process-search.coffee": {
+                "objects": {
+                    "0": {
+                        "4": {
+                            "name": "_",
+                            "type": "import",
+                            "range": [
+                                [
+                                    0,
+                                    4
+                                ],
+                                [
+                                    0,
+                                    23
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "underscore@~1.5.1"
+                        }
+                    },
+                    "1": {
+                        "15": {
+                            "name": "PathSearcher",
+                            "type": "import",
+                            "range": [
+                                [
+                                    1,
+                                    15
+                                ],
+                                [
+                                    1,
+                                    39
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./path-searcher"
+                        }
+                    },
+                    "2": {
+                        "14": {
+                            "name": "PathScanner",
+                            "type": "import",
+                            "range": [
+                                [
+                                    2,
+                                    14
+                                ],
+                                [
+                                    2,
+                                    37
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./path-scanner"
+                        }
+                    },
+                    "3": {
+                        "7": {
+                            "name": "path",
+                            "type": "import",
+                            "range": [
+                                [
+                                    3,
+                                    7
+                                ],
+                                [
+                                    3,
+                                    20
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "path",
+                            "builtin": true
+                        }
+                    },
+                    "4": {
+                        "8": {
+                            "name": "split",
+                            "type": "import",
+                            "range": [
+                                [
+                                    4,
+                                    8
+                                ],
+                                [
+                                    4,
+                                    22
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "split@~0.2"
+                        }
+                    },
+                    "27": {
+                        "11": {
+                            "name": "makeTask",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [
+                                "fn"
+                            ],
+                            "range": [
+                                [
+                                    27,
+                                    11
+                                ],
+                                [
+                                    29,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "30": {
+                        "7": {
+                            "name": "fork",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [
+                                "task",
+                                "env"
+                            ],
+                            "range": [
+                                [
+                                    30,
+                                    7
+                                ],
+                                [
+                                    35,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "36": {
+                        "7": {
+                            "name": "kill",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [
+                                "childProcess"
+                            ],
+                            "range": [
+                                [
+                                    36,
+                                    7
+                                ],
+                                [
+                                    42,
+                                    33
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "43": {
+                        "7": {
+                            "name": "scan",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    43,
+                                    7
+                                ],
+                                [
+                                    81,
+                                    30
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "82": {
+                        "9": {
+                            "name": "search",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    82,
+                                    9
+                                ],
+                                [
+                                    127,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "128": {
+                        "13": {
+                            "name": "searchMain",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [
+                                "options"
+                            ],
+                            "range": [
+                                [
+                                    128,
+                                    13
+                                ],
+                                [
+                                    193,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    }
+                },
+                "exports": 194
+            },
+            "./src/path-filter.coffee": {
+                "objects": {
+                    "0": {
+                        "1": {
+                            "type": "import",
+                            "range": [
+                                [
+                                    0,
+                                    1
+                                ],
+                                [
+                                    0,
+                                    9
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "minimatch@0.2.13",
+                            "name": "Minimatch",
+                            "exportsProperty": "Minimatch"
+                        }
+                    },
+                    "1": {
+                        "11": {
+                            "name": "GitUtils",
+                            "type": "import",
+                            "range": [
+                                [
+                                    1,
+                                    11
+                                ],
+                                [
+                                    1,
+                                    29
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "git-utils@^2.1"
+                        }
+                    },
+                    "2": {
+                        "7": {
+                            "name": "path",
+                            "type": "import",
+                            "range": [
+                                [
+                                    2,
+                                    7
+                                ],
+                                [
+                                    2,
+                                    20
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "path",
+                            "builtin": true
+                        }
+                    },
+                    "6": {
+                        "0": {
+                            "type": "class",
+                            "name": "PathFilter",
+                            "bindingType": "exports",
+                            "classProperties": [
+                                [
+                                    7,
+                                    22
+                                ],
+                                [
+                                    9,
+                                    17
+                                ]
+                            ],
+                            "prototypeProperties": [
+                                [
+                                    23,
+                                    15
+                                ],
+                                [
+                                    41,
+                                    18
+                                ],
+                                [
+                                    50,
+                                    23
+                                ],
+                                [
+                                    53,
+                                    18
+                                ],
+                                [
+                                    62,
+                                    17
+                                ],
+                                [
+                                    71,
+                                    18
+                                ],
+                                [
+                                    81,
+                                    17
+                                ],
+                                [
+                                    86,
+                                    18
+                                ]
+                            ],
+                            "doc": " Public: {PathFilter} makes testing for path inclusion easy. ",
+                            "range": [
+                                [
+                                    6,
+                                    0
+                                ],
+                                [
+                                    159,
+                                    12
+                                ]
+                            ]
+                        }
+                    },
+                    "7": {
+                        "22": {
+                            "name": "MINIMATCH_OPTIONS",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    7,
+                                    22
+                                ],
+                                [
+                                    7,
+                                    69
+                                ]
+                            ],
+                            "bindingType": "classProperty"
+                        }
+                    },
+                    "9": {
+                        "17": {
+                            "name": "escapeRegExp",
+                            "bindingType": "classProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "str"
+                            ],
+                            "range": [
+                                [
+                                    9,
+                                    17
+                                ],
+                                [
+                                    23,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "23": {
+                        "15": {
+                            "name": "constructor",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "rootPath",
+                                null
+                            ],
+                            "range": [
+                                [
+                                    23,
+                                    15
+                                ],
+                                [
+                                    31,
+                                    1
+                                ]
+                            ],
+                            "doc": " Public: Construct a {PathFilter}\n\n* `rootPath` {String} top level directory to scan. eg. `/Users/ben/somedir`\n* `options` {Object} options hash\n* `excludeVcsIgnores` {Boolean}; default false; true to exclude paths\n   defined in a .gitignore. Uses git-utils to check ignred files.\n* `inclusions` {Array} of patterns to include. Uses minimatch with a couple\n   additions: `['dirname']` and `['dirname/']` will match all paths in\n   directory dirname.\n* `exclusions` {Array} of patterns to exclude. Same matcher as inclusions.\n* `includeHidden` {Boolean} default false; true includes hidden files "
+                        }
+                    },
+                    "31": {
+                        "2": {
+                            "type": "comment",
+                            "doc": "\nSection: Testing For Acceptance\n",
+                            "range": [
+                                [
+                                    31,
+                                    2
+                                ],
+                                [
+                                    33,
+                                    4
+                                ]
+                            ]
+                        }
+                    },
+                    "41": {
+                        "18": {
+                            "name": "isFileAccepted",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "filepath"
+                            ],
+                            "range": [
+                                [
+                                    41,
+                                    18
+                                ],
+                                [
+                                    50,
+                                    1
+                                ]
+                            ],
+                            "doc": " Public: Test if the `filepath` is accepted as a file based on the\nconstructing options.\n\n* `filepath` {String} path to a file. File should be a file and should exist\n\nReturns {Boolean} true if the file is accepted "
+                        }
+                    },
+                    "50": {
+                        "23": {
+                            "name": "isDirectoryAccepted",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "filepath"
+                            ],
+                            "range": [
+                                [
+                                    50,
+                                    23
+                                ],
+                                [
+                                    53,
+                                    1
+                                ]
+                            ],
+                            "doc": " Public: Test if the `filepath` is accepted as a directory based on the\nconstructing options.\n\n* `filepath` {String} path to a directory. File should be a directory and should exist\n\nReturns {Boolean} true if the directory is accepted "
+                        }
+                    },
+                    "53": {
+                        "18": {
+                            "name": "isPathAccepted",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "fileOrDirectory",
+                                "filepath"
+                            ],
+                            "range": [
+                                [
+                                    53,
+                                    18
+                                ],
+                                [
+                                    58,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "58": {
+                        "2": {
+                            "type": "comment",
+                            "doc": "\nSection: Private Methods\n",
+                            "range": [
+                                [
+                                    58,
+                                    2
+                                ],
+                                [
+                                    60,
+                                    4
+                                ]
+                            ]
+                        }
+                    },
+                    "62": {
+                        "17": {
+                            "name": "isPathIgnored",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "fileOrDirectory",
+                                "filepath"
+                            ],
+                            "range": [
+                                [
+                                    62,
+                                    17
+                                ],
+                                [
+                                    71,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "71": {
+                        "18": {
+                            "name": "isPathIncluded",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "fileOrDirectory",
+                                "filepath"
+                            ],
+                            "range": [
+                                [
+                                    71,
+                                    18
+                                ],
+                                [
+                                    81,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "81": {
+                        "17": {
+                            "name": "excludeHidden",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    81,
+                                    17
+                                ],
+                                [
+                                    86,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "86": {
+                        "18": {
+                            "name": "createMatchers",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "patterns",
+                                "deepMatch"
+                            ],
+                            "range": [
+                                [
+                                    86,
+                                    18
+                                ],
+                                [
+                                    159,
+                                    12
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    }
+                },
+                "exports": 6
+            },
+            "./src/path-replacer.coffee": {
+                "objects": {
+                    "0": {
+                        "4": {
+                            "name": "_",
+                            "type": "import",
+                            "range": [
+                                [
+                                    0,
+                                    4
+                                ],
+                                [
+                                    0,
+                                    23
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "underscore@~1.5.1"
+                        }
+                    },
+                    "1": {
+                        "5": {
+                            "name": "fs",
+                            "type": "import",
+                            "range": [
+                                [
+                                    1,
+                                    5
+                                ],
+                                [
+                                    1,
+                                    16
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "fs",
+                            "builtin": true
+                        }
+                    },
+                    "2": {
+                        "7": {
+                            "name": "temp",
+                            "type": "function",
+                            "range": [
+                                [
+                                    2,
+                                    7
+                                ],
+                                [
+                                    2,
+                                    29
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "3": {
+                        "1": {
+                            "type": "import",
+                            "range": [
+                                [
+                                    3,
+                                    1
+                                ],
+                                [
+                                    3,
+                                    12
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "events",
+                            "builtin": true,
+                            "name": "EventEmitter",
+                            "exportsProperty": "EventEmitter"
+                        }
+                    },
+                    "4": {
+                        "1": {
+                            "type": "import",
+                            "range": [
+                                [
+                                    4,
+                                    1
+                                ],
+                                [
+                                    4,
+                                    9
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "stream",
+                            "builtin": true,
+                            "name": "Transform",
+                            "exportsProperty": "Transform"
+                        }
+                    },
+                    "5": {
+                        "1": {
+                            "type": "import",
+                            "range": [
+                                [
+                                    5,
+                                    1
+                                ],
+                                [
+                                    5,
+                                    3
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "os",
+                            "builtin": true,
+                            "name": "EOL",
+                            "exportsProperty": "EOL"
+                        }
+                    },
+                    "7": {
+                        "18": {
+                            "name": "ChunkedExecutor",
+                            "type": "import",
+                            "range": [
+                                [
+                                    7,
+                                    18
+                                ],
+                                [
+                                    7,
+                                    45
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./chunked-executor"
+                        }
+                    },
+                    "8": {
+                        "20": {
+                            "name": "ChunkedLineReader",
+                            "type": "import",
+                            "range": [
+                                [
+                                    8,
+                                    20
+                                ],
+                                [
+                                    8,
+                                    50
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./chunked-line-reader"
+                        }
+                    },
+                    "10": {
+                        "0": {
+                            "type": "class",
+                            "name": "ReplaceTransformer",
+                            "classProperties": [],
+                            "prototypeProperties": [
+                                [
+                                    11,
+                                    15
+                                ],
+                                [
+                                    15,
+                                    14
+                                ]
+                            ],
+                            "doc": "~Private~",
+                            "range": [
+                                [
+                                    10,
+                                    0
+                                ],
+                                [
+                                    25,
+                                    0
+                                ]
+                            ]
+                        }
+                    },
+                    "11": {
+                        "15": {
+                            "name": "constructor",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                null,
+                                null,
+                                null
+                            ],
+                            "range": [
+                                [
+                                    11,
+                                    15
+                                ],
+                                [
+                                    15,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "15": {
+                        "14": {
+                            "name": "_transform",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "chunk",
+                                "encoding",
+                                "done"
+                            ],
+                            "range": [
+                                [
+                                    15,
+                                    14
+                                ],
+                                [
+                                    25,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "27": {
+                        "0": {
+                            "type": "class",
+                            "name": "PathReplacer",
+                            "bindingType": "exports",
+                            "classProperties": [],
+                            "prototypeProperties": [
+                                [
+                                    28,
+                                    15
+                                ],
+                                [
+                                    30,
+                                    16
+                                ],
+                                [
+                                    48,
+                                    15
+                                ]
+                            ],
+                            "doc": "~Private~",
+                            "range": [
+                                [
+                                    27,
+                                    0
+                                ],
+                                [
+                                    80,
+                                    31
+                                ]
+                            ]
+                        }
+                    },
+                    "28": {
+                        "15": {
+                            "name": "constructor",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                null
+                            ],
+                            "range": [
+                                [
+                                    28,
+                                    15
+                                ],
+                                [
+                                    28,
+                                    35
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "30": {
+                        "16": {
+                            "name": "replacePaths",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "regex",
+                                "replacementText",
+                                "paths",
+                                "doneCallback"
+                            ],
+                            "range": [
+                                [
+                                    30,
+                                    16
+                                ],
+                                [
+                                    48,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "48": {
+                        "15": {
+                            "name": "replacePath",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "regex",
+                                "replacementText",
+                                "filePath",
+                                "doneCallback"
+                            ],
+                            "range": [
+                                [
+                                    48,
+                                    15
+                                ],
+                                [
+                                    80,
+                                    31
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    }
+                },
+                "exports": 27
+            },
+            "./src/path-scanner.coffee": {
+                "objects": {
+                    "0": {
+                        "4": {
+                            "name": "_",
+                            "type": "import",
+                            "range": [
+                                [
+                                    0,
+                                    4
+                                ],
+                                [
+                                    0,
+                                    24
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "underscore@~1.5.1"
+                        }
+                    },
+                    "1": {
+                        "5": {
+                            "name": "fs",
+                            "type": "import",
+                            "range": [
+                                [
+                                    1,
+                                    5
+                                ],
+                                [
+                                    1,
+                                    17
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "fs",
+                            "builtin": true
+                        }
+                    },
+                    "2": {
+                        "7": {
+                            "name": "path",
+                            "type": "import",
+                            "range": [
+                                [
+                                    2,
+                                    7
+                                ],
+                                [
+                                    2,
+                                    21
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "path",
+                            "builtin": true
+                        }
+                    },
+                    "3": {
+                        "1": {
+                            "type": "import",
+                            "range": [
+                                [
+                                    3,
+                                    1
+                                ],
+                                [
+                                    3,
+                                    12
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "events",
+                            "builtin": true,
+                            "name": "EventEmitter",
+                            "exportsProperty": "EventEmitter"
+                        }
+                    },
+                    "4": {
+                        "13": {
+                            "name": "PathFilter",
+                            "type": "import",
+                            "range": [
+                                [
+                                    4,
+                                    13
+                                ],
+                                [
+                                    4,
+                                    36
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./path-filter"
+                        }
+                    },
+                    "6": {
+                        "10": {
+                            "name": "path",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    6,
+                                    10
+                                ],
+                                [
+                                    6,
+                                    13
+                                ]
+                            ]
+                        }
+                    },
+                    "35": {
+                        "0": {
+                            "type": "class",
+                            "name": "PathScanner",
+                            "bindingType": "exports",
+                            "classProperties": [],
+                            "prototypeProperties": [
+                                [
+                                    48,
+                                    15
+                                ],
+                                [
+                                    59,
+                                    8
+                                ],
+                                [
+                                    62,
+                                    11
+                                ],
+                                [
+                                    76,
+                                    14
+                                ],
+                                [
+                                    85,
+                                    15
+                                ],
+                                [
+                                    95,
+                                    8
+                                ],
+                                [
+                                    108,
+                                    21
+                                ],
+                                [
+                                    111,
+                                    17
+                                ]
+                            ],
+                            "doc": " Public: Scans a directory and emits events when paths matching input options\nhave been found.\n\nNote: `PathScanner` keeps no state. You must consume paths via the {::path-found} event.\n\n## Examples\n\n```coffee\n{PathScanner} = require 'scandal'\nscanner = new PathScanner('/Users/me/myDopeProject', includeHidden: false)\n\nscanner.on 'path-found', (path) ->\n  console.log(path)\n\nscanner.on 'finished-scanning', ->\n  console.log('All done!')\n\nscanner.scan()\n```\n\n## Events\n\n* `path-found` Emit when a path has been found\n  * `pathName` {String} name of the path\n* `finished-scanning` Emit when the scanner is finished\n\n ",
+                            "range": [
+                                [
+                                    35,
+                                    0
+                                ],
+                                [
+                                    113,
+                                    38
+                                ]
+                            ]
+                        }
+                    },
+                    "48": {
+                        "15": {
+                            "name": "constructor",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                null,
+                                null
+                            ],
+                            "range": [
+                                [
+                                    48,
+                                    15
+                                ],
+                                [
+                                    54,
+                                    1
+                                ]
+                            ],
+                            "doc": " Public: Create a {PathScanner} object.\n\n* `rootPath` {String} top level directory to scan. eg. `/Users/ben/somedir`\n* `options` {Object} options hash\n* `excludeVcsIgnores` {Boolean}; default false; true to exclude paths\n   defined in a .gitignore. Uses git-utils to check ignred files.\n* `inclusions` {Array} of patterns to include. Uses minimatch with a couple\n   additions: `['dirname']` and `['dirname/']` will match all paths in\n   directory dirname.\n* `exclusions` {Array} of patterns to exclude. Same matcher as inclusions.\n* `includeHidden` {Boolean} default false; true includes hidden files "
+                        }
+                    },
+                    "54": {
+                        "2": {
+                            "type": "comment",
+                            "doc": "\nSection: Searching\n",
+                            "range": [
+                                [
+                                    54,
+                                    2
+                                ],
+                                [
+                                    56,
+                                    4
+                                ]
+                            ]
+                        }
+                    },
+                    "59": {
+                        "8": {
+                            "name": "scan",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    59,
+                                    8
+                                ],
+                                [
+                                    62,
+                                    1
+                                ]
+                            ],
+                            "doc": " Public: Begin the scan "
+                        }
+                    },
+                    "62": {
+                        "11": {
+                            "name": "readDir",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "filePath"
+                            ],
+                            "range": [
+                                [
+                                    62,
+                                    11
+                                ],
+                                [
+                                    76,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "76": {
+                        "14": {
+                            "name": "relativize",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "filePath"
+                            ],
+                            "range": [
+                                [
+                                    76,
+                                    14
+                                ],
+                                [
+                                    85,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "85": {
+                        "15": {
+                            "name": "processFile",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "filePath"
+                            ],
+                            "range": [
+                                [
+                                    85,
+                                    15
+                                ],
+                                [
+                                    95,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "95": {
+                        "8": {
+                            "name": "stat",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "filePath"
+                            ],
+                            "range": [
+                                [
+                                    95,
+                                    8
+                                ],
+                                [
+                                    108,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "108": {
+                        "21": {
+                            "name": "asyncCallStarting",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    108,
+                                    21
+                                ],
+                                [
+                                    111,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "111": {
+                        "17": {
+                            "name": "asyncCallDone",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    111,
+                                    17
+                                ],
+                                [
+                                    113,
+                                    38
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    }
+                },
+                "exports": 35
+            },
+            "./src/path-searcher.coffee": {
+                "objects": {
+                    "0": {
+                        "4": {
+                            "name": "_",
+                            "type": "import",
+                            "range": [
+                                [
+                                    0,
+                                    4
+                                ],
+                                [
+                                    0,
+                                    24
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "underscore@~1.5.1"
+                        }
+                    },
+                    "1": {
+                        "5": {
+                            "name": "fs",
+                            "type": "import",
+                            "range": [
+                                [
+                                    1,
+                                    5
+                                ],
+                                [
+                                    1,
+                                    17
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "fs",
+                            "builtin": true
+                        }
+                    },
+                    "2": {
+                        "5": {
+                            "name": "os",
+                            "type": "import",
+                            "range": [
+                                [
+                                    2,
+                                    5
+                                ],
+                                [
+                                    2,
+                                    17
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "os",
+                            "builtin": true
+                        }
+                    },
+                    "3": {
+                        "1": {
+                            "type": "import",
+                            "range": [
+                                [
+                                    3,
+                                    1
+                                ],
+                                [
+                                    3,
+                                    12
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "events",
+                            "builtin": true,
+                            "name": "EventEmitter",
+                            "exportsProperty": "EventEmitter"
+                        }
+                    },
+                    "4": {
+                        "18": {
+                            "name": "ChunkedExecutor",
+                            "type": "import",
+                            "range": [
+                                [
+                                    4,
+                                    18
+                                ],
+                                [
+                                    4,
+                                    46
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./chunked-executor"
+                        }
+                    },
+                    "5": {
+                        "20": {
+                            "name": "ChunkedLineReader",
+                            "type": "import",
+                            "range": [
+                                [
+                                    5,
+                                    20
+                                ],
+                                [
+                                    5,
+                                    51
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./chunked-line-reader"
+                        }
+                    },
+                    "7": {
+                        "18": {
+                            "name": "100",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    7,
+                                    18
+                                ],
+                                [
+                                    7,
+                                    20
+                                ]
+                            ]
+                        }
+                    },
+                    "8": {
+                        "19": {
+                            "name": "/[ \\r\\n\\t;:?=&\\/]/",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    8,
+                                    19
+                                ],
+                                [
+                                    8,
+                                    36
+                                ]
+                            ]
+                        }
+                    },
+                    "9": {
+                        "17": {
+                            "name": "/\\r\\n|\\n|\\r/",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    9,
+                                    17
+                                ],
+                                [
+                                    9,
+                                    28
+                                ]
+                            ]
+                        }
+                    },
+                    "10": {
+                        "26": {
+                            "name": "/\\r?\\n?$/",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    10,
+                                    26
+                                ],
+                                [
+                                    10,
+                                    34
+                                ]
+                            ]
+                        }
+                    },
+                    "79": {
+                        "0": {
+                            "type": "class",
+                            "name": "PathSearcher",
+                            "bindingType": "exports",
+                            "classProperties": [],
+                            "prototypeProperties": [
+                                [
+                                    88,
+                                    15
+                                ],
+                                [
+                                    109,
+                                    15
+                                ],
+                                [
+                                    135,
+                                    14
+                                ],
+                                [
+                                    164,
+                                    14
+                                ],
+                                [
+                                    214,
+                                    17
+                                ]
+                            ],
+                            "doc": " Public: Will search through paths specified for a regex.\n\nLike the {PathScanner} the {PathSearcher} keeps no state. You need to consume\nresults via the done callbacks or events.\n\nFile reading is fast and memory efficient. It reads in 10k chunks and writes\nover each previous chunk. Small object creation is kept to a minimum during\nthe read to make light use of the GC.\n\n## Examples\n\n```coffee\n{PathSearcher} = require 'scandal'\nsearcher = new PathSearcher()\n\n# You can subscribe to a `results-found` event\nsearcher.on 'results-found', (result) ->\n  # result will contain all the matches for a single path\n  console.log(\"Single Path's Results\", result)\n\n# Search a list of paths\nsearcher.searchPaths /text/gi, ['/Some/path', ...], (results) ->\n  console.log('Done Searching', results)\n\n# Search a single path\nsearcher.searchPath /text/gi, '/Some/path', (result) ->\n  console.log('Done Searching', result)\n```\n\nA results from line 10 (1 based) are in the following format:\n\n```js\n{\n  \"path\": \"/Some/path\",\n  \"matches\": [{\n    \"matchText\": \"Text\",\n    \"lineText\": \"Text in this file!\",\n    \"lineTextOffset\": 0,\n    \"range\": [[9, 0], [9, 4]]\n  }]\n}\n```\n\n## Events\n\n* `results-found` Fired when searching for a each path has been completed\n   and matches were found.\n  * `results` {Object} in the result format:\n    ```js\n    {\n      \"path\": \"/Some/path.txt\",\n      \"matches\": [{\n        \"matchText\": \"Text\",\n        \"lineText\": \"Text in this file!\",\n        \"lineTextOffset\": 0,\n        \"range\": [[9, 0], [9, 4]]\n      }]\n    }\n    ```\n* `results-not-found` Fired when searching for a path has finished and _no_\n   matches were found.\n  * `filePath` path to the file nothing was found in `\"/Some/path.txt\"`\n* `file-error` Fired when an error occurred when searching a file. Happens\n   for example when a file cannot be opened.\n  * `error` {Error} object\n\n ",
+                            "range": [
+                                [
+                                    79,
+                                    0
+                                ],
+                                [
+                                    226,
+                                    5
+                                ]
+                            ]
+                        }
+                    },
+                    "88": {
+                        "15": {
+                            "name": "constructor",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                null
+                            ],
+                            "range": [
+                                [
+                                    88,
+                                    15
+                                ],
+                                [
+                                    92,
+                                    1
+                                ]
+                            ],
+                            "doc": " Public: Construct a {PathSearcher} object.\n\n* `options` {Object}\n* `maxLineLength` {Number} default `100`; The max length of the `lineText`\n   component in a results object. `lineText` is the context around the matched text.\n* `wordBreakRegex` {RegExp} default `/[ \\r\\n\\t;:?=&\\/]/`;\n   Used to break on a word when finding the context for a match. "
+                        }
+                    },
+                    "92": {
+                        "2": {
+                            "type": "comment",
+                            "doc": "\nSection: Searching\n",
+                            "range": [
+                                [
+                                    92,
+                                    2
+                                ],
+                                [
+                                    94,
+                                    4
+                                ]
+                            ]
+                        }
+                    },
+                    "109": {
+                        "15": {
+                            "name": "searchPaths",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "regex",
+                                "paths",
+                                "doneCallback"
+                            ],
+                            "range": [
+                                [
+                                    109,
+                                    15
+                                ],
+                                [
+                                    135,
+                                    1
+                                ]
+                            ],
+                            "doc": " Public: Search an array of paths.\n\nWill search with a {ChunkedExecutor} so as not to immediately exhaust all\nthe available file descriptors. The {ChunkedExecutor} will execute 20 paths\nconcurrently.\n\n* `regex` {RegExp} search pattern\n* `paths` {Array} of {String} file paths to search\n* `doneCallback` called when searching the entire array of paths has finished\n* `results` {Array} of Result objects in the format specified above;\n   null when there are no results\n* `errors` {Array} of errors; null when there are no errors. Errors will\n   be js Error objects with `message`, `stack`, etc. "
+                        }
+                    },
+                    "135": {
+                        "14": {
+                            "name": "searchPath",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "regex",
+                                "filePath",
+                                "doneCallback"
+                            ],
+                            "range": [
+                                [
+                                    135,
+                                    14
+                                ],
+                                [
+                                    164,
+                                    1
+                                ]
+                            ],
+                            "doc": " Public: Search a file path for a regex\n\n* `regex` {RegExp} search pattern\n* `filePath` {String} file path to search\n* `doneCallback` called when searching the entire array of paths has finished\n* `results` {Array} of Result objects in the format specified above;\n   null when there are no results\n* `error` {Error}; null when there is no error "
+                        }
+                    },
+                    "164": {
+                        "14": {
+                            "name": "searchLine",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "regex",
+                                "line",
+                                "lineNumber"
+                            ],
+                            "range": [
+                                [
+                                    164,
+                                    14
+                                ],
+                                [
+                                    214,
+                                    1
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "214": {
+                        "17": {
+                            "name": "findWordBreak",
+                            "bindingType": "prototypeProperty",
+                            "type": "function",
+                            "paramNames": [
+                                "line",
+                                "offset",
+                                "increment"
+                            ],
+                            "range": [
+                                [
+                                    214,
+                                    17
+                                ],
+                                [
+                                    226,
+                                    5
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    }
+                },
+                "exports": 79
+            },
+            "./src/scandal.coffee": {
+                "objects": {
+                    "0": {
+                        "4": {
+                            "name": "_",
+                            "type": "import",
+                            "range": [
+                                [
+                                    0,
+                                    4
+                                ],
+                                [
+                                    0,
+                                    23
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "underscore@~1.5.1"
+                        }
+                    },
+                    "1": {
+                        "1": {
+                            "type": "import",
+                            "range": [
+                                [
+                                    1,
+                                    1
+                                ],
+                                [
+                                    1,
+                                    14
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "argparse@~0.1",
+                            "name": "ArgumentParser",
+                            "exportsProperty": "ArgumentParser"
+                        }
+                    },
+                    "2": {
+                        "15": {
+                            "name": "PathSearcher",
+                            "type": "import",
+                            "range": [
+                                [
+                                    2,
+                                    15
+                                ],
+                                [
+                                    2,
+                                    39
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./path-searcher"
+                        }
+                    },
+                    "3": {
+                        "14": {
+                            "name": "PathScanner",
+                            "type": "import",
+                            "range": [
+                                [
+                                    3,
+                                    14
+                                ],
+                                [
+                                    3,
+                                    37
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./path-scanner"
+                        }
+                    },
+                    "4": {
+                        "15": {
+                            "name": "PathReplacer",
+                            "type": "import",
+                            "range": [
+                                [
+                                    4,
+                                    15
+                                ],
+                                [
+                                    4,
+                                    39
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./path-replacer"
+                        }
+                    },
+                    "5": {
+                        "7": {
+                            "name": "path",
+                            "type": "import",
+                            "range": [
+                                [
+                                    5,
+                                    7
+                                ],
+                                [
+                                    5,
+                                    20
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "module": "path",
+                            "builtin": true
+                        }
+                    },
+                    "7": {
+                        "16": {
+                            "name": "SingleProcess",
+                            "type": "import",
+                            "range": [
+                                [
+                                    7,
+                                    16
+                                ],
+                                [
+                                    7,
+                                    49
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./single-process-search"
+                        }
+                    },
+                    "8": {
+                        "1": {
+                            "type": "primitive",
+                            "name": "search",
+                            "range": [
+                                [
+                                    8,
+                                    1
+                                ],
+                                [
+                                    8,
+                                    6
+                                ]
+                            ],
+                            "exportsProperty": "search"
+                        },
+                        "9": {
+                            "type": "primitive",
+                            "name": "replace",
+                            "range": [
+                                [
+                                    8,
+                                    9
+                                ],
+                                [
+                                    8,
+                                    15
+                                ]
+                            ],
+                            "exportsProperty": "replace"
+                        }
+                    },
+                    "9": {
+                        "24": {
+                            "name": "SingleProcess",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    9,
+                                    24
+                                ],
+                                [
+                                    9,
+                                    36
+                                ]
+                            ]
+                        }
+                    },
+                    "10": {
+                        "26": {
+                            "name": "SingleProcess",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    10,
+                                    26
+                                ],
+                                [
+                                    10,
+                                    38
+                                ]
+                            ]
+                        }
+                    },
+                    "11": {
+                        "27": {
+                            "name": "SingleProcess",
+                            "type": "primitive",
+                            "range": [
+                                [
+                                    11,
+                                    27
+                                ],
+                                [
+                                    11,
+                                    39
+                                ]
+                            ]
+                        }
+                    },
+                    "18": {
+                        "7": {
+                            "name": "main",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [],
+                            "range": [
+                                [
+                                    18,
+                                    7
+                                ],
+                                [
+                                    43,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    }
+                },
+                "exports": 44
+            },
+            "./src/single-process-search.coffee": {
+                "objects": {
+                    "0": {
+                        "15": {
+                            "name": "PathSearcher",
+                            "type": "import",
+                            "range": [
+                                [
+                                    0,
+                                    15
+                                ],
+                                [
+                                    0,
+                                    39
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./path-searcher"
+                        }
+                    },
+                    "1": {
+                        "14": {
+                            "name": "PathScanner",
+                            "type": "import",
+                            "range": [
+                                [
+                                    1,
+                                    14
+                                ],
+                                [
+                                    1,
+                                    37
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./path-scanner"
+                        }
+                    },
+                    "2": {
+                        "15": {
+                            "name": "PathReplacer",
+                            "type": "import",
+                            "range": [
+                                [
+                                    2,
+                                    15
+                                ],
+                                [
+                                    2,
+                                    39
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./path-replacer"
+                        }
+                    },
+                    "3": {
+                        "17": {
+                            "name": "ChunkedScanner",
+                            "type": "import",
+                            "range": [
+                                [
+                                    3,
+                                    17
+                                ],
+                                [
+                                    3,
+                                    43
+                                ]
+                            ],
+                            "bindingType": "variable",
+                            "path": "./chunked-scanner"
+                        }
+                    },
+                    "9": {
+                        "17": {
+                            "name": "globalizeRegex",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [
+                                "regex"
+                            ],
+                            "range": [
+                                [
+                                    9,
+                                    17
+                                ],
+                                [
+                                    19,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "20": {
+                        "9": {
+                            "name": "search",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [
+                                "regex",
+                                "scanner",
+                                "searcher",
+                                "doneCallback"
+                            ],
+                            "range": [
+                                [
+                                    20,
+                                    9
+                                ],
+                                [
+                                    26,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "27": {
+                        "13": {
+                            "name": "searchMain",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [
+                                "options"
+                            ],
+                            "range": [
+                                [
+                                    27,
+                                    13
+                                ],
+                                [
+                                    54,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "55": {
+                        "10": {
+                            "name": "replace",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [
+                                "regex",
+                                "replacement",
+                                "scanner",
+                                "replacer",
+                                "doneCallback"
+                            ],
+                            "range": [
+                                [
+                                    55,
+                                    10
+                                ],
+                                [
+                                    61,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "62": {
+                        "14": {
+                            "name": "replaceMain",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [
+                                "options"
+                            ],
+                            "range": [
+                                [
+                                    62,
+                                    14
+                                ],
+                                [
+                                    86,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    },
+                    "87": {
+                        "11": {
+                            "name": "scanMain",
+                            "bindingType": "variable",
+                            "type": "function",
+                            "paramNames": [
+                                "options"
+                            ],
+                            "range": [
+                                [
+                                    87,
+                                    11
+                                ],
+                                [
+                                    101,
+                                    0
+                                ]
+                            ],
+                            "doc": null
+                        }
+                    }
+                },
+                "exports": 102
+            }
+        }
+    }
+]
