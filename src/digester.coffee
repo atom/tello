@@ -7,7 +7,7 @@ class Digester
     @current = {}
 
   digest: (metadata) ->
-    classes = []
+    classes = {}
     for packageObject in metadata
       @current.package = packageObject
       files = packageObject.files
@@ -20,8 +20,8 @@ class Digester
           for column, object of columnsObj
             switch object.type
               when 'class'
-                klass = @digestClass(object)
-                classes.push klass if klass?
+                classResult = @digestClass(object)
+                classes[classResult.name] = classResult if classResult?
 
     {classes}
 
@@ -38,7 +38,7 @@ class Digester
     for section in sections
       for method in classMethods.concat instanceMethods
         if section.name is method.sectionName
-          filteredSections.push(section)
+          filteredSections.push(_.pick section, 'name', 'description')
           break
 
     parsedAttributes = ['visibility', 'summary', 'description', 'events', 'examples']
