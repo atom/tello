@@ -54,13 +54,16 @@ class Digester
     doc = @docFromDocString(entity.doc)
     return unless doc?
 
-    {
+    parsedAttributes = [
+      'visibility', 'summary', 'description',
+      'arguments', 'events', 'examples', 'returnValues'
+    ]
+
+    _.extend {
       name: entity.name
-      visibility: doc.visibility
-      summary: doc.summary
       sectionName: @sectionNameForRow(sections, entityPosition[0])
       srcUrl: @linkForPosition(entityPosition)
-    }
+    }, _.pick(doc, parsedAttributes...)
 
   ###
   Section: Utils
