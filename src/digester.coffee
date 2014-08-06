@@ -41,14 +41,15 @@ class Digester
           filteredSections.push(section)
           break
 
-    {
+    parsedAttributes = ['visibility', 'summary', 'description', 'events', 'examples']
+
+    _.extend {
       name: classEntity.name
       filename: @current.filename
-      visibility: classDoc.visibility
       sections: filteredSections
       classMethods: classMethods
       instanceMethods: instanceMethods
-    }
+    }, _.pick(classDoc, parsedAttributes...)
 
   digestEntity: (sections, entity, entityPosition) ->
     doc = @docFromDocString(entity.doc)

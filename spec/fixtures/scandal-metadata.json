@@ -54,7 +54,7 @@
                                     19
                                 ]
                             ],
-                            "doc": " Public: {ChunkedExecutor} will execute on an {Array} paths in a pathQueue only\nrunning a max of 20 of them concurrently.\n\n## Examples\n\n  ```coffee\n  paths = ['/path/to/somefile.coffee', '/path/to/someotherfile.coffee']\n\n  searchPath = (filePath, callback) =>\n    # Do something with the path here...\n    callback()\n\n  executor = new ChunkedExecutor(paths, searchPath).execute ->\n    console.log 'done!'\n\n  # Now you can push more on the queue\n  executor.push '/path/to/lastone.coffee'\n  ``` ",
+                            "doc": " Public: {ChunkedExecutor} will execute on an {Array} paths in a pathQueue only\nrunning a max of 20 of them concurrently.\n\n## Examples\n\n  ```coffee\n  paths = ['/path/to/somefile.coffee', '/path/to/someotherfile.coffee']\n\n  searchPath = (filePath, callback) =>\n    # Do something with the path here...\n    callback()\n\n  executor = new ChunkedExecutor(paths, searchPath).execute ->\n    console.log 'done!'\n\n  # Now you can push more on the queue\n  executor.push '/path/to/lastone.coffee'\n  ``` ",
                             "range": [
                                 [
                                     21,
@@ -934,7 +934,7 @@
                                     18
                                 ]
                             ],
-                            "doc": " Public: {PathFilter} makes testing for path inclusion easy. ",
+                            "doc": "Public: {PathFilter} makes testing for path inclusion easy. ",
                             "range": [
                                 [
                                     6,
@@ -1674,7 +1674,7 @@
                                     17
                                 ]
                             ],
-                            "doc": " Public: Scans a directory and emits events when paths matching input options\nhave been found.\n\nNote: `PathScanner` keeps no state. You must consume paths via the {::path-found} event.\n\n## Examples\n\n```coffee\n{PathScanner} = require 'scandal'\nscanner = new PathScanner('/Users/me/myDopeProject', includeHidden: false)\n\nscanner.on 'path-found', (path) ->\n  console.log(path)\n\nscanner.on 'finished-scanning', ->\n  console.log('All done!')\n\nscanner.scan()\n```\n\n## Events\n\n* `path-found` Emit when a path has been found\n  * `pathName` {String} name of the path\n* `finished-scanning` Emit when the scanner is finished\n\n ",
+                            "doc": " Public: Scans a directory and emits events when paths matching input options\nhave been found.\n\nNote: `PathScanner` keeps no state. You must consume paths via the {::path-found} event.\n\n## Examples\n\n```coffee\n{PathScanner} = require 'scandal'\nscanner = new PathScanner('/Users/me/myDopeProject', includeHidden: false)\n\nscanner.on 'path-found', (path) ->\n  console.log(path)\n\nscanner.on 'finished-scanning', ->\n  console.log('All done!')\n\nscanner.scan()\n```\n\n## Events\n\n* `path-found` Emit when a path has been found\n  * `pathName` {String} name of the path\n* `finished-scanning` Emit when the scanner is finished\n\n ",
                             "range": [
                                 [
                                     35,
@@ -1741,7 +1741,7 @@
                                     1
                                 ]
                             ],
-                            "doc": " Public: Begin the scan "
+                            "doc": "Public: Begin the scan "
                         }
                     },
                     "62": {
@@ -2075,7 +2075,7 @@
                                     17
                                 ]
                             ],
-                            "doc": " Public: Will search through paths specified for a regex.\n\nLike the {PathScanner} the {PathSearcher} keeps no state. You need to consume\nresults via the done callbacks or events.\n\nFile reading is fast and memory efficient. It reads in 10k chunks and writes\nover each previous chunk. Small object creation is kept to a minimum during\nthe read to make light use of the GC.\n\n## Examples\n\n```coffee\n{PathSearcher} = require 'scandal'\nsearcher = new PathSearcher()\n\n# You can subscribe to a `results-found` event\nsearcher.on 'results-found', (result) ->\n  # result will contain all the matches for a single path\n  console.log(\"Single Path's Results\", result)\n\n# Search a list of paths\nsearcher.searchPaths /text/gi, ['/Some/path', ...], (results) ->\n  console.log('Done Searching', results)\n\n# Search a single path\nsearcher.searchPath /text/gi, '/Some/path', (result) ->\n  console.log('Done Searching', result)\n```\n\nA results from line 10 (1 based) are in the following format:\n\n```js\n{\n  \"path\": \"/Some/path\",\n  \"matches\": [{\n    \"matchText\": \"Text\",\n    \"lineText\": \"Text in this file!\",\n    \"lineTextOffset\": 0,\n    \"range\": [[9, 0], [9, 4]]\n  }]\n}\n```\n\n## Events\n\n* `results-found` Fired when searching for a each path has been completed\n   and matches were found.\n  * `results` {Object} in the result format:\n    ```js\n    {\n      \"path\": \"/Some/path.txt\",\n      \"matches\": [{\n        \"matchText\": \"Text\",\n        \"lineText\": \"Text in this file!\",\n        \"lineTextOffset\": 0,\n        \"range\": [[9, 0], [9, 4]]\n      }]\n    }\n    ```\n* `results-not-found` Fired when searching for a path has finished and _no_\n   matches were found.\n  * `filePath` path to the file nothing was found in `\"/Some/path.txt\"`\n* `file-error` Fired when an error occurred when searching a file. Happens\n   for example when a file cannot be opened.\n  * `error` {Error} object\n\n ",
+                            "doc": " Public: Will search through paths specified for a regex.\n\nLike the {PathScanner} the {PathSearcher} keeps no state. You need to consume\nresults via the done callbacks or events.\n\nFile reading is fast and memory efficient. It reads in 10k chunks and writes\nover each previous chunk. Small object creation is kept to a minimum during\nthe read to make light use of the GC.\n\n## Examples\n\n```coffee\n{PathSearcher} = require 'scandal'\nsearcher = new PathSearcher()\n\n# You can subscribe to a `results-found` event\nsearcher.on 'results-found', (result) ->\n  # result will contain all the matches for a single path\n  console.log(\"Single Path's Results\", result)\n\n# Search a list of paths\nsearcher.searchPaths /text/gi, ['/Some/path', ...], (results) ->\n  console.log('Done Searching', results)\n\n# Search a single path\nsearcher.searchPath /text/gi, '/Some/path', (result) ->\n  console.log('Done Searching', result)\n```\n\nA results from line 10 (1 based) are in the following format:\n\n```js\n{\n  \"path\": \"/Some/path\",\n  \"matches\": [{\n    \"matchText\": \"Text\",\n    \"lineText\": \"Text in this file!\",\n    \"lineTextOffset\": 0,\n    \"range\": [[9, 0], [9, 4]]\n  }]\n}\n```\n\n## Events\n\n* `results-found` Fired when searching for a each path has been completed\n   and matches were found.\n  * `results` {Object} in the result format:\n    ```js\n    {\n      \"path\": \"/Some/path.txt\",\n      \"matches\": [{\n        \"matchText\": \"Text\",\n        \"lineText\": \"Text in this file!\",\n        \"lineTextOffset\": 0,\n        \"range\": [[9, 0], [9, 4]]\n      }]\n    }\n    ```\n* `results-not-found` Fired when searching for a path has finished and _no_\n   matches were found.\n  * `filePath` path to the file nothing was found in `\"/Some/path.txt\"`\n* `file-error` Fired when an error occurred when searching a file. Happens\n   for example when a file cannot be opened.\n  * `error` {Error} object\n\n ",
                             "range": [
                                 [
                                     79,
