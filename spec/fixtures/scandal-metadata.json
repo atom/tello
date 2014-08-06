@@ -54,7 +54,7 @@
                                     19
                                 ]
                             ],
-                            "doc": "\nPublic: {ChunkedExecutor} will execute on an {Array} paths in a pathQueue only\nrunning a max of 20 of them concurrently.\n\n## Examples\n\n  ```coffee\n  paths = ['/path/to/somefile.coffee', '/path/to/someotherfile.coffee']\n\n  searchPath = (filePath, callback) =>\n    # Do something with the path here...\n    callback()\n\n  executor = new ChunkedExecutor(paths, searchPath).execute ->\n    console.log 'done!'\n\n  # Now you can push more on the queue\n  executor.push '/path/to/lastone.coffee'\n  ```\n",
+                            "doc": " Public: {ChunkedExecutor} will execute on an {Array} paths in a pathQueue only\nrunning a max of 20 of them concurrently.\n\n## Examples\n\n  ```coffee\n  paths = ['/path/to/somefile.coffee', '/path/to/someotherfile.coffee']\n\n  searchPath = (filePath, callback) =>\n    # Do something with the path here...\n    callback()\n\n  executor = new ChunkedExecutor(paths, searchPath).execute ->\n    console.log 'done!'\n\n  # Now you can push more on the queue\n  executor.push '/path/to/lastone.coffee'\n  ``` ",
                             "range": [
                                 [
                                     21,
@@ -123,7 +123,7 @@
                                     1
                                 ]
                             ],
-                            "doc": "\nPublic: Begin execution of the `pathQueue`\n\n* `doneCallback` {Function} callback that will be called when execution is finished.\n"
+                            "doc": " Public: Begin execution of the `pathQueue`\n\n* `doneCallback` {Function} callback that will be called when execution is finished. "
                         }
                     },
                     "52": {
@@ -144,7 +144,7 @@
                                     1
                                 ]
                             ],
-                            "doc": "\nPublic: Push a new path on the queue\n\nMay or may not execute immediately.\n\n* `filePath` {String} path to a file\n"
+                            "doc": " Public: Push a new path on the queue\n\nMay or may not execute immediately.\n\n* `filePath` {String} path to a file "
                         }
                     },
                     "59": {
@@ -340,7 +340,7 @@
                                     9
                                 ]
                             ],
-                            "doc": "\nPrivate: Will ensure data will be read on a line boundary. So this will always do the\nright thing:\n\n  lines = []\n  reader = new ChunkedLineReader('some/file.txt')\n  reader.on 'data', (chunk) ->\n    line = chunk.toString().replace(/\\r?\\n?$/, '')\n    lines = lines.concat(line.split(/\\r\\n|\\n|\\r/))\n\nThis will collect all the lines in the file, or you can process each line in\nthe data handler for more efficiency.\n",
+                            "doc": " Private: Will ensure data will be read on a line boundary. So this will always do the\nright thing:\n\n  lines = []\n  reader = new ChunkedLineReader('some/file.txt')\n  reader.on 'data', (chunk) ->\n    line = chunk.toString().replace(/\\r?\\n?$/, '')\n    lines = lines.concat(line.split(/\\r\\n|\\n|\\r/))\n\nThis will collect all the lines in the file, or you can process each line in\nthe data handler for more efficiency. ",
                             "range": [
                                 [
                                     22,
@@ -934,7 +934,7 @@
                                     18
                                 ]
                             ],
-                            "doc": "\nPublic: {PathFilter} makes testing for path inclusion easy.\n",
+                            "doc": " Public: {PathFilter} makes testing for path inclusion easy. ",
                             "range": [
                                 [
                                     6,
@@ -1004,7 +1004,7 @@
                                     1
                                 ]
                             ],
-                            "doc": "\nPublic: Construct a {PathFilter}\n\n* `rootPath` {String} top level directory to scan. eg. `/Users/ben/somedir`\n* `options` {Object} options hash\n  * `excludeVcsIgnores` {Boolean}; default false; true to exclude paths\n     defined in a .gitignore. Uses git-utils to check ignred files.\n  * `inclusions` {Array} of patterns to include. Uses minimatch with a couple\n     additions: `['dirname']` and `['dirname/']` will match all paths in\n     directory dirname.\n  * `exclusions` {Array} of patterns to exclude. Same matcher as inclusions.\n  * `includeHidden` {Boolean} default false; true includes hidden files\n"
+                            "doc": " Public: Construct a {PathFilter}\n\n* `rootPath` {String} top level directory to scan. eg. `/Users/ben/somedir`\n* `options` {Object} options hash\n  * `excludeVcsIgnores` {Boolean}; default false; true to exclude paths\n     defined in a .gitignore. Uses git-utils to check ignred files.\n  * `inclusions` {Array} of patterns to include. Uses minimatch with a couple\n     additions: `['dirname']` and `['dirname/']` will match all paths in\n     directory dirname.\n  * `exclusions` {Array} of patterns to exclude. Same matcher as inclusions.\n  * `includeHidden` {Boolean} default false; true includes hidden files "
                         }
                     },
                     "31": {
@@ -1041,7 +1041,7 @@
                                     1
                                 ]
                             ],
-                            "doc": "\nPublic: Test if the `filepath` is accepted as a file based on the\nconstructing options.\n\n* `filepath` {String} path to a file. File should be a file and should exist\n\nReturns {Boolean} true if the file is accepted\n"
+                            "doc": " Public: Test if the `filepath` is accepted as a file based on the\nconstructing options.\n\n* `filepath` {String} path to a file. File should be a file and should exist\n\nReturns {Boolean} true if the file is accepted "
                         }
                     },
                     "50": {
@@ -1062,7 +1062,7 @@
                                     1
                                 ]
                             ],
-                            "doc": "\nPublic: Test if the `filepath` is accepted as a directory based on the\nconstructing options.\n\n* `filepath` {String} path to a directory. File should be a directory and should exist\n\nReturns {Boolean} true if the directory is accepted\n"
+                            "doc": " Public: Test if the `filepath` is accepted as a directory based on the\nconstructing options.\n\n* `filepath` {String} path to a directory. File should be a directory and should exist\n\nReturns {Boolean} true if the directory is accepted "
                         }
                     },
                     "53": {
@@ -1674,7 +1674,7 @@
                                     17
                                 ]
                             ],
-                            "doc": "\nPublic: Scans a directory and emits events when paths matching input options\nhave been found.\n\nNote: `PathScanner` keeps no state. You must consume paths via the {::path-found} event.\n\n## Examples\n\n```coffee\n{PathScanner} = require 'scandal'\nscanner = new PathScanner('/Users/me/myDopeProject', includeHidden: false)\n\nscanner.on 'path-found', (path) ->\n  console.log(path)\n\nscanner.on 'finished-scanning', ->\n  console.log('All done!')\n\nscanner.scan()\n```\n\n## Events\n\n* `path-found` Emit when a path has been found\n  * `pathName` {String} name of the path\n* `finished-scanning` Emit when the scanner is finished\n\n",
+                            "doc": " Public: Scans a directory and emits events when paths matching input options\nhave been found.\n\nNote: `PathScanner` keeps no state. You must consume paths via the {::path-found} event.\n\n## Examples\n\n```coffee\n{PathScanner} = require 'scandal'\nscanner = new PathScanner('/Users/me/myDopeProject', includeHidden: false)\n\nscanner.on 'path-found', (path) ->\n  console.log(path)\n\nscanner.on 'finished-scanning', ->\n  console.log('All done!')\n\nscanner.scan()\n```\n\n## Events\n\n* `path-found` Emit when a path has been found\n  * `pathName` {String} name of the path\n* `finished-scanning` Emit when the scanner is finished\n\n ",
                             "range": [
                                 [
                                     35,
@@ -1706,7 +1706,7 @@
                                     1
                                 ]
                             ],
-                            "doc": "\nPublic: Create a {PathScanner} object.\n\n* `rootPath` {String} top level directory to scan. eg. `/Users/ben/somedir`\n* `options` {Object} options hash\n  * `excludeVcsIgnores` {Boolean}; default false; true to exclude paths\n     defined in a .gitignore. Uses git-utils to check ignred files.\n  * `inclusions` {Array} of patterns to include. Uses minimatch with a couple\n     additions: `['dirname']` and `['dirname/']` will match all paths in\n     directory dirname.\n  * `exclusions` {Array} of patterns to exclude. Same matcher as inclusions.\n  * `includeHidden` {Boolean} default false; true includes hidden files\n"
+                            "doc": " Public: Create a {PathScanner} object.\n\n* `rootPath` {String} top level directory to scan. eg. `/Users/ben/somedir`\n* `options` {Object} options hash\n  * `excludeVcsIgnores` {Boolean}; default false; true to exclude paths\n     defined in a .gitignore. Uses git-utils to check ignred files.\n  * `inclusions` {Array} of patterns to include. Uses minimatch with a couple\n     additions: `['dirname']` and `['dirname/']` will match all paths in\n     directory dirname.\n  * `exclusions` {Array} of patterns to exclude. Same matcher as inclusions.\n  * `includeHidden` {Boolean} default false; true includes hidden files "
                         }
                     },
                     "54": {
@@ -1741,7 +1741,7 @@
                                     1
                                 ]
                             ],
-                            "doc": "\nPublic: Begin the scan\n"
+                            "doc": " Public: Begin the scan "
                         }
                     },
                     "62": {
@@ -2075,7 +2075,7 @@
                                     17
                                 ]
                             ],
-                            "doc": "\nPublic: Will search through paths specified for a regex.\n\nLike the {PathScanner} the {PathSearcher} keeps no state. You need to consume\nresults via the done callbacks or events.\n\nFile reading is fast and memory efficient. It reads in 10k chunks and writes\nover each previous chunk. Small object creation is kept to a minimum during\nthe read to make light use of the GC.\n\n## Examples\n\n```coffee\n{PathSearcher} = require 'scandal'\nsearcher = new PathSearcher()\n\n# You can subscribe to a `results-found` event\nsearcher.on 'results-found', (result) ->\n  # result will contain all the matches for a single path\n  console.log(\"Single Path's Results\", result)\n\n# Search a list of paths\nsearcher.searchPaths /text/gi, ['/Some/path', ...], (results) ->\n  console.log('Done Searching', results)\n\n# Search a single path\nsearcher.searchPath /text/gi, '/Some/path', (result) ->\n  console.log('Done Searching', result)\n```\n\nA results from line 10 (1 based) are in the following format:\n\n```js\n{\n  \"path\": \"/Some/path\",\n  \"matches\": [{\n    \"matchText\": \"Text\",\n    \"lineText\": \"Text in this file!\",\n    \"lineTextOffset\": 0,\n    \"range\": [[9, 0], [9, 4]]\n  }]\n}\n```\n\n## Events\n\n* `results-found` Fired when searching for a each path has been completed\n   and matches were found.\n  * `results` {Object} in the result format:\n    ```js\n    {\n      \"path\": \"/Some/path.txt\",\n      \"matches\": [{\n        \"matchText\": \"Text\",\n        \"lineText\": \"Text in this file!\",\n        \"lineTextOffset\": 0,\n        \"range\": [[9, 0], [9, 4]]\n      }]\n    }\n    ```\n* `results-not-found` Fired when searching for a path has finished and _no_\n   matches were found.\n  * `filePath` path to the file nothing was found in `\"/Some/path.txt\"`\n* `file-error` Fired when an error occurred when searching a file. Happens\n   for example when a file cannot be opened.\n  * `error` {Error} object\n\n",
+                            "doc": " Public: Will search through paths specified for a regex.\n\nLike the {PathScanner} the {PathSearcher} keeps no state. You need to consume\nresults via the done callbacks or events.\n\nFile reading is fast and memory efficient. It reads in 10k chunks and writes\nover each previous chunk. Small object creation is kept to a minimum during\nthe read to make light use of the GC.\n\n## Examples\n\n```coffee\n{PathSearcher} = require 'scandal'\nsearcher = new PathSearcher()\n\n# You can subscribe to a `results-found` event\nsearcher.on 'results-found', (result) ->\n  # result will contain all the matches for a single path\n  console.log(\"Single Path's Results\", result)\n\n# Search a list of paths\nsearcher.searchPaths /text/gi, ['/Some/path', ...], (results) ->\n  console.log('Done Searching', results)\n\n# Search a single path\nsearcher.searchPath /text/gi, '/Some/path', (result) ->\n  console.log('Done Searching', result)\n```\n\nA results from line 10 (1 based) are in the following format:\n\n```js\n{\n  \"path\": \"/Some/path\",\n  \"matches\": [{\n    \"matchText\": \"Text\",\n    \"lineText\": \"Text in this file!\",\n    \"lineTextOffset\": 0,\n    \"range\": [[9, 0], [9, 4]]\n  }]\n}\n```\n\n## Events\n\n* `results-found` Fired when searching for a each path has been completed\n   and matches were found.\n  * `results` {Object} in the result format:\n    ```js\n    {\n      \"path\": \"/Some/path.txt\",\n      \"matches\": [{\n        \"matchText\": \"Text\",\n        \"lineText\": \"Text in this file!\",\n        \"lineTextOffset\": 0,\n        \"range\": [[9, 0], [9, 4]]\n      }]\n    }\n    ```\n* `results-not-found` Fired when searching for a path has finished and _no_\n   matches were found.\n  * `filePath` path to the file nothing was found in `\"/Some/path.txt\"`\n* `file-error` Fired when an error occurred when searching a file. Happens\n   for example when a file cannot be opened.\n  * `error` {Error} object\n\n ",
                             "range": [
                                 [
                                     79,
@@ -2106,7 +2106,7 @@
                                     1
                                 ]
                             ],
-                            "doc": "\nPublic: Construct a {PathSearcher} object.\n\n* `options` {Object}\n  * `maxLineLength` {Number} default `100`; The max length of the `lineText`\n     component in a results object. `lineText` is the context around the matched text.\n  * `wordBreakRegex` {RegExp} default `/[ \\r\\n\\t;:?=&\\/]/`;\n     Used to break on a word when finding the context for a match.\n"
+                            "doc": " Public: Construct a {PathSearcher} object.\n\n* `options` {Object}\n  * `maxLineLength` {Number} default `100`; The max length of the `lineText`\n     component in a results object. `lineText` is the context around the matched text.\n  * `wordBreakRegex` {RegExp} default `/[ \\r\\n\\t;:?=&\\/]/`;\n     Used to break on a word when finding the context for a match. "
                         }
                     },
                     "92": {
@@ -2145,7 +2145,7 @@
                                     1
                                 ]
                             ],
-                            "doc": "\nPublic: Search an array of paths.\n\nWill search with a {ChunkedExecutor} so as not to immediately exhaust all\nthe available file descriptors. The {ChunkedExecutor} will execute 20 paths\nconcurrently.\n\n* `regex` {RegExp} search pattern\n* `paths` {Array} of {String} file paths to search\n* `doneCallback` called when searching the entire array of paths has finished\n  * `results` {Array} of Result objects in the format specified above;\n     null when there are no results\n  * `errors` {Array} of errors; null when there are no errors. Errors will\n     be js Error objects with `message`, `stack`, etc.\n"
+                            "doc": " Public: Search an array of paths.\n\nWill search with a {ChunkedExecutor} so as not to immediately exhaust all\nthe available file descriptors. The {ChunkedExecutor} will execute 20 paths\nconcurrently.\n\n* `regex` {RegExp} search pattern\n* `paths` {Array} of {String} file paths to search\n* `doneCallback` called when searching the entire array of paths has finished\n  * `results` {Array} of Result objects in the format specified above;\n     null when there are no results\n  * `errors` {Array} of errors; null when there are no errors. Errors will\n     be js Error objects with `message`, `stack`, etc. "
                         }
                     },
                     "135": {
@@ -2168,7 +2168,7 @@
                                     1
                                 ]
                             ],
-                            "doc": "\nPublic: Search a file path for a regex\n\n* `regex` {RegExp} search pattern\n* `filePath` {String} file path to search\n* `doneCallback` called when searching the entire array of paths has finished\n  * `results` {Array} of Result objects in the format specified above;\n     null when there are no results\n  * `error` {Error}; null when there is no error\n"
+                            "doc": " Public: Search a file path for a regex\n\n* `regex` {RegExp} search pattern\n* `filePath` {String} file path to search\n* `doneCallback` called when searching the entire array of paths has finished\n  * `results` {Array} of Result objects in the format specified above;\n     null when there are no results\n  * `error` {Error}; null when there is no error "
                         }
                     },
                     "164": {
