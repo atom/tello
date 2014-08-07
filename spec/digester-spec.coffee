@@ -3,7 +3,77 @@ fs = require 'fs'
 Biscotto = require 'biscotto'
 
 describe 'digest', ->
-  describe 'src generation', ->
+  it 'generates method arguments', ->
+    file = """
+      # Public: Some class
+      class Something
+        # Public: this is a function
+        #
+        # * `argument` arg
+        #   * `argument` arg
+        someFunction: ->
+    """
+    json = Parser.generateDigest(file)
+    expect(json.classes.Something.instanceMethods[0].arguments.list.length).toBe 1
+    expect(json.classes.Something.instanceMethods[0].arguments.list[0].children.length).toBe 1
+
+  it 'generates examples', ->
+    file = """
+      # Public: Some class
+      #
+      # ## Examples
+      #
+      # This is an example
+      #
+      # ```js
+      # a = 1
+      # ```
+      class Something
+        # Public: this is a function
+        #
+        # ## Examples
+        #
+        # Method example
+        #
+        # ```js
+        # a = 1
+        # ```
+        someFunction: ->
+    """
+    json = Parser.generateDigest(file)
+    expect(json.classes.Something.examples.length).toBe 1
+    expect(json.classes.Something.examples[0].description).toBe 'This is an example'
+    expect(json.classes.Something.instanceMethods[0].examples.length).toBe 1
+    expect(json.classes.Something.instanceMethods[0].examples[0].description).toBe 'Method example'
+
+  it 'generates events', ->
+    file = """
+      # Public: Some class
+      #
+      # ## Events
+      #
+      # Class Events
+      #
+      # * `event-one` an event
+      #   * `argument` arg
+      class Something
+        # Public: this is a function
+        #
+        # ## Events
+        #
+        # Method Events
+        #
+        # * `event-method` a method event
+        #   * `argument` arg
+        someFunction: ->
+    """
+    json = Parser.generateDigest(file)
+    expect(json.classes.Something.events.length).toBe 1
+    expect(json.classes.Something.events.description).toBe 'Class Events'
+    expect(json.classes.Something.instanceMethods[0].events.length).toBe 1
+    expect(json.classes.Something.instanceMethods[0].events.description).toBe 'Method Events'
+
+  describe 'src link generation', ->
     it 'generates links to github based on repo and version', ->
       file = """
         # Public: Some class
@@ -34,6 +104,54 @@ describe 'digest', ->
               name : 'somefunction'
               sectionName : null
               srcUrl : 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L4'
+              summary : 'this is a function '
+              description : 'this is a function '
+            }]
+
+  describe 'class methods', ->
+    it 'generates class level methods', ->
+      file = """
+        # Public: Some class
+        class Something
+          # Public: Some class level function
+          @aClassFunction: ->
+
+          # A private class function
+          @privateClassFunction: ->
+
+          # Public: this is a function
+          someFunction: ->
+      """
+      json = Parser.generateDigest file,
+        filename: 'file1.coffee'
+        packageJson:
+          name: 'somerepo'
+          repository: 'https://github.com/atom/somerepo.git'
+          version: '2.3.4'
+
+      expect(json).toEqualJson
+        classes:
+          Something:
+            visibility : 'Public'
+            name : 'Something'
+            filename : 'file1.coffee'
+            summary : 'Some class '
+            description : 'Some class '
+            srcUrl: 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L2'
+            sections : []
+            classMethods : [{
+              visibility : 'Public'
+              name : 'aClassFunction'
+              sectionName : null
+              srcUrl : 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L4'
+              summary : 'Some class level function '
+              description : 'Some class level function '
+            }]
+            instanceMethods: [{
+              visibility : 'Public'
+              name : 'someFunction'
+              sectionName : null
+              srcUrl : 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L10'
               summary : 'this is a function '
               description : 'this is a function '
             }]
@@ -256,14 +374,6 @@ describe 'digest', ->
         description: 'in section two '
         srcUrl: null
       }]
-
-  describe 'digesting Scandal metadata', ->
-    it 'can digest', ->
-      rootPath = fs.realpathSync("spec/fixtures/scandal-metadata.json")
-      metadata = JSON.parse(fs.readFileSync(rootPath))
-
-      json = digest(metadata)
-      console.log JSON.stringify(json, null, '  ')
 
 # Yeah, recreating some biscotto stuff here...
 class Parser
