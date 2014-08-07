@@ -1,5 +1,11 @@
 _ = require 'underscore'
 
+unorderedEqual = (one, two) ->
+  return false if one.length != two.length
+  for val in one
+    return false unless _.contains(two, val)
+  true
+
 beforeEach ->
   @addMatchers
     toEqualJson: (expected) ->
@@ -36,7 +42,7 @@ beforeEach ->
 
             when "Array"
               if actual.length != expected.length
-                addFailure(path, "has length #{actual.length}", "has length #{expected.length}")
+                addFailure(path, "has length #{actual.length} #{JSON.stringify(actual)}", "has length #{expected.length} #{JSON.stringify(expected)}")
               else
                 for value, i in actual
                   compare(appendToPath(path, i), actual[i], expected[i])
@@ -44,8 +50,8 @@ beforeEach ->
             when "Object"
               actualKeys = _.keys(actual)
               expectedKeys = _.keys(expected)
-              unless _.isEqual(actualKeys, expectedKeys)
-                addFailure(path, "has keys #{JSON.stringify(actualKeys)}", "has keys #{JSON.stringify(expectedKeys)}")
+              unless unorderedEqual(actualKeys, expectedKeys)
+                addFailure(path, "has keys #{JSON.stringify(actualKeys.sort())}", "has keys #{JSON.stringify(expectedKeys.sort())}")
               else
                 for key, value of actual
                   continue unless actual.hasOwnProperty(key)
