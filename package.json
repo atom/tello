@@ -22,7 +22,7 @@
   },
   "homepage": "http://atom.github.io/grappa",
   "dependencies": {
-    "atomdoc": "~0.0",
+    "atomdoc": "~0.1",
     "underscore": "~1.6"
   },
   "devDependencies": {
