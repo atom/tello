@@ -46,6 +46,7 @@ class Digester
     _.extend {
       name: classEntity.name
       filename: @current.filename
+      srcUrl: @linkForRow(classEntity.range[0][0])
       sections: filteredSections
       classMethods: classMethods
       instanceMethods: instanceMethods
@@ -63,7 +64,7 @@ class Digester
     _.extend {
       name: entity.name
       sectionName: @sectionNameForRow(sections, entityPosition[0])
-      srcUrl: @linkForPosition(entityPosition)
+      srcUrl: @linkForRow(entityPosition[0])
     }, _.pick(doc, parsedAttributes...)
 
   ###
@@ -106,7 +107,9 @@ class Digester
     sections
 
   sectionNameForRow: (sections, row) ->
-    for section in sections
+    return null unless sections.length
+    for i in [sections.length-1..0]
+      section = sections[i]
       return section.name if row > section.startRow
     null
 
@@ -120,12 +123,12 @@ class Digester
   objectFromPosition: (position) ->
     @current.objects[position[0]][position[1]]
 
-  linkForPosition: (position) ->
+  linkForRow: (row) ->
     return null unless @current.package.repository?
 
     repo = @current.package.repository.replace(/\.git$/i, '')
     filePath = path.normalize "/blob/v#{@current.package.version}/#{@current.filename}"
-    "#{repo}#{filePath}#L#{position[0] + 1}"
+    "#{repo}#{filePath}#L#{row + 1}"
 
 module.exports =
   digest: (metadata) ->
