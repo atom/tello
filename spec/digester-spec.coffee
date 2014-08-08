@@ -68,9 +68,9 @@ describe 'digest', ->
         someFunction: ->
     """
     json = Parser.generateDigest(file)
-    expect(json.classes.Something.events.length).toBe 1
+    expect(json.classes.Something.events.list.length).toBe 1
     expect(json.classes.Something.events.description).toBe 'Class Events'
-    expect(json.classes.Something.instanceMethods[0].events.length).toBe 1
+    expect(json.classes.Something.instanceMethods[0].events.list.length).toBe 1
     expect(json.classes.Something.instanceMethods[0].events.description).toBe 'Method Events'
 
   describe 'src link generation', ->
