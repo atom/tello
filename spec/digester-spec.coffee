@@ -1,6 +1,7 @@
 fs = require 'fs'
 {digest} = require '../src/digester'
-Biscotto = require 'biscotto'
+MetaDoc = require 'metadoc'
+CoffeeScript = require 'coffee-script'
 
 describe 'digest', ->
   it 'generates method arguments', ->
@@ -384,17 +385,7 @@ class Parser
 
   constructor: ->
     @slugs = {}
-    @parser = new Biscotto.Parser
-      inputs: []
-      output: ''
-      extras: []
-      readme: ''
-      title: ''
-      quiet: false
-      private: true
-      verbose: true
-      metadata: true
-      github: ''
+    @parser = new MetaDoc.Parser()
 
   generateDigest: ->
     slugs = []
@@ -413,6 +404,6 @@ class Parser
       files: {}
 
     @parser.parseContent(fileContents, filename)
-    metadata = new Biscotto.Metadata(packageJson, @parser)
+    metadata = new MetaDoc.Metadata(packageJson, @parser)
     metadata.generate(CoffeeScript.nodes(fileContents))
-    Biscotto.populateSlug(slug, filename, metadata)
+    MetaDoc.populateSlug(slug, filename, metadata)
