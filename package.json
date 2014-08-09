@@ -1,6 +1,6 @@
 {
   "name": "grappa",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Digests biscotto metadata",
   "main": "./lib/grappa.js",
   "scripts": {
