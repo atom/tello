@@ -75,39 +75,73 @@ describe 'digest', ->
     expect(json.classes.Something.instanceMethods[0].events.description).toBe 'Method Events'
 
   describe 'src link generation', ->
-    it 'generates links to github based on repo and version', ->
-      file = """
-        # Public: Some class
-        class Something
-          # Public: this is a function
-          somefunction: ->
-      """
-      json = Parser.generateDigest file,
-        filename: 'file1.coffee'
-        packageJson:
-          name: 'somerepo'
-          repository: 'https://github.com/atom/somerepo.git'
-          version: '2.3.4'
+    describe 'when there are multiple packages', ->
+      it 'generates links to github based on repo and version', ->
+        file1 = """
+          # Public: Some class
+          class Something
+            # Public: this is a function
+            somefunction: ->
+        """
+        file2 = """
+          # Public: Another class
+          class Another
 
-      expect(json).toEqualJson
-        classes:
-          Something:
-            visibility : 'Public'
-            name : 'Something'
-            filename : 'file1.coffee'
-            summary : 'Some class '
-            description : 'Some class '
-            srcUrl: 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L2'
-            sections : []
-            classMethods : []
-            instanceMethods: [{
+            # Public: this is a function
+            anotherfunction: ->
+        """
+        parser = new Parser
+        parser.addFile file1,
+          filename: 'file1.coffee'
+          packageJson:
+            name: 'somerepo'
+            repository: 'https://github.com/atom/somerepo.git'
+            version: '2.3.4'
+        parser.addFile file2,
+          filename: 'file2.coffee'
+          packageJson:
+            name: 'anotherrepo'
+            repository: 'https://github.com/atom/anotherrepo.git'
+            version: '1.2.3'
+
+        json = parser.generateDigest()
+        expect(json.classes.Something.srcUrl).toEqual 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L2'
+        expect(json.classes.Another.srcUrl).toEqual 'https://github.com/atom/anotherrepo/blob/v1.2.3/file2.coffee#L2'
+
+    describe 'when there is only one package', ->
+      it 'generates links to github based on repo and version', ->
+        file = """
+          # Public: Some class
+          class Something
+            # Public: this is a function
+            somefunction: ->
+        """
+        json = Parser.generateDigest file,
+          filename: 'file1.coffee'
+          packageJson:
+            name: 'somerepo'
+            repository: 'https://github.com/atom/somerepo.git'
+            version: '2.3.4'
+
+        expect(json).toEqualJson
+          classes:
+            Something:
               visibility : 'Public'
-              name : 'somefunction'
-              sectionName : null
-              srcUrl : 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L4'
-              summary : 'this is a function '
-              description : 'this is a function '
-            }]
+              name : 'Something'
+              filename : 'file1.coffee'
+              summary : 'Some class '
+              description : 'Some class '
+              srcUrl: 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L2'
+              sections : []
+              classMethods : []
+              instanceMethods: [{
+                visibility : 'Public'
+                name : 'somefunction'
+                sectionName : null
+                srcUrl : 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L4'
+                summary : 'this is a function '
+                description : 'this is a function '
+              }]
 
   describe 'class methods', ->
     it 'generates class level methods', ->
