@@ -5,10 +5,10 @@ Converts [metadata][metadata] from [donna][donna] to an intermediate doc format.
 ## Usage
 
 ```coffee
-{digest} = require 'tello'
+Tello = require 'tello'
 
 metadata = # get from biscotto
-telloFormat = digest(metadata)
+telloFormat = Tello.digest(metadata)
 ```
 
 ## Output
