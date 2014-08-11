@@ -1,26 +1,26 @@
 {
-  "name": "grappa",
+  "name": "tello",
   "version": "0.0.2",
   "description": "Digests biscotto metadata",
-  "main": "./lib/grappa.js",
+  "main": "./lib/tello.js",
   "scripts": {
     "test": "grunt test",
     "prepublish": "grunt clean lint coffee"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/atom/grappa.git"
+    "url": "https://github.com/atom/tello.git"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://github.com/atom/grappa/raw/master/LICENSE.md"
+      "url": "http://github.com/atom/tello/raw/master/LICENSE.md"
     }
   ],
   "bugs": {
-    "url": "https://github.com/atom/grappa/issues"
+    "url": "https://github.com/atom/tello/issues"
   },
-  "homepage": "http://atom.github.io/grappa",
+  "homepage": "http://atom.github.io/tello",
   "dependencies": {
     "atomdoc": "~0.1",
     "underscore": "~1.6"

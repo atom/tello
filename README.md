@@ -1,14 +1,14 @@
-# Grappa: Biscotto metadata digest
+# Tello: A Donna metadata digest
 
-Converts [metadata][metadata] from [biscotto][biscotto] to an intermediate format.
+Converts [metadata][metadata] from [donna][donna] to an intermediate doc format.
 
 ## Usage
 
 ```coffee
-{digest} = require 'grappa'
+{digest} = require 'tello'
 
 metadata = # get from biscotto
-grappaFormat = digest(metadata)
+telloFormat = digest(metadata)
 ```
 
 ## Output
@@ -204,6 +204,6 @@ Here is an example output based on [Scandal::PathSearcher][searcher]:
 }
 ```
 
-[metadata]:https://github.com/atom/grappa/blob/master/spec/fixtures/scandal-metadata.json
+[metadata]:https://github.com/atom/tello/blob/master/spec/fixtures/scandal-metadata.json
 [searcher]:https://github.com/atom/scandal/blob/master/src/path-searcher.coffee
-[biscotto]:https://github.com/atom/biscotto/
+[donna]:https://github.com/atom/donna
