@@ -1,6 +1,6 @@
 fs = require 'fs'
 {digest} = require '../src/digester'
-MetaDoc = require 'metadoc'
+MetaDoc = require 'donna'
 CoffeeScript = require 'coffee-script'
 
 describe 'digest', ->
