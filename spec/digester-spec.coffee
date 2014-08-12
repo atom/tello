@@ -74,6 +74,28 @@ describe 'digest', ->
     expect(json.classes.Something.instanceMethods[0].events.list.length).toBe 1
     expect(json.classes.Something.instanceMethods[0].events.description).toBe 'Method Events'
 
+  describe 'when a class has a super class', ->
+    it 'generates links to github based on repo and version', ->
+      file = """
+        # Public: Some class
+        class Something extends String
+      """
+      json = Parser.generateDigest file
+
+      expect(json).toEqualJson
+        classes:
+          Something:
+            visibility : 'Public'
+            name : 'Something'
+            superClass: 'String'
+            filename : 'src/fakefile.coffee'
+            summary : 'Some class '
+            description : 'Some class '
+            srcUrl: null
+            sections : []
+            classMethods : []
+            instanceMethods: []
+
   describe 'src link generation', ->
     describe 'when there are multiple packages', ->
       it 'generates links to github based on repo and version', ->
@@ -128,6 +150,7 @@ describe 'digest', ->
             Something:
               visibility : 'Public'
               name : 'Something'
+              superClass: null
               filename : 'file1.coffee'
               summary : 'Some class '
               description : 'Some class '
@@ -168,7 +191,8 @@ describe 'digest', ->
         classes:
           Something:
             visibility : 'Public'
-            name : 'Something'
+            name: 'Something'
+            superClass: null
             filename : 'file1.coffee'
             summary : 'Some class '
             description : 'Some class '

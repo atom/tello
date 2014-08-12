@@ -45,6 +45,7 @@ class Digester
 
     _.extend {
       name: classEntity.name
+      superClass: classEntity.superClass
       filename: @current.filename
       srcUrl: @linkForRow(classEntity.range[0][0])
       sections: filteredSections
