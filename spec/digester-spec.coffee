@@ -15,8 +15,8 @@ describe 'digest', ->
         someFunction: ->
     """
     json = Parser.generateDigest(file)
-    expect(json.classes.Something.instanceMethods[0].arguments.list.length).toBe 1
-    expect(json.classes.Something.instanceMethods[0].arguments.list[0].children.length).toBe 1
+    expect(json.classes.Something.instanceMethods[0].arguments.length).toBe 1
+    expect(json.classes.Something.instanceMethods[0].arguments[0].children.length).toBe 1
 
   it 'generates examples', ->
     file = """
@@ -55,8 +55,11 @@ describe 'digest', ->
       #
       # Class Events
       #
-      # * `event-one` an event
-      #   * `argument` arg
+      # ### event-one
+      #
+      # an event
+      #
+      # * `argument` arg
       class Something
         # Public: this is a function
         #
@@ -64,15 +67,18 @@ describe 'digest', ->
         #
         # Method Events
         #
-        # * `event-method` a method event
-        #   * `argument` arg
+        # ### event-method
+        #
+        # a method event
+        #
+        # * `argument` arg
         someFunction: ->
     """
     json = Parser.generateDigest(file)
-    expect(json.classes.Something.events.list.length).toBe 1
-    expect(json.classes.Something.events.description).toBe 'Class Events'
-    expect(json.classes.Something.instanceMethods[0].events.list.length).toBe 1
-    expect(json.classes.Something.instanceMethods[0].events.description).toBe 'Method Events'
+    expect(json.classes.Something.events.length).toBe 1
+    expect(json.classes.Something.events[0].description).toBe 'an event'
+    expect(json.classes.Something.instanceMethods[0].events.length).toBe 1
+    expect(json.classes.Something.instanceMethods[0].events[0].description).toBe 'a method event'
 
   describe 'when a class has a super class', ->
     it 'generates links to github based on repo and version', ->
