@@ -4,7 +4,7 @@
         "repository": "https://github.com/atom/scandal.git",
         "version": "1.0.1",
         "files": {
-            "./src/chunked-executor.coffee": {
+            "src/chunked-executor.coffee": {
                 "objects": {
                     "0": {
                         "23": {
@@ -86,7 +86,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": " Private: Construct a {ChunkedExecutor}\n\n* `pathQueue` {Array} of paths\n* `execPathFn` {Function} that will execute on each path\n  * `filePath` {String} path to a file from the `pathQueue`\n  * `callback` {Function} callback your `execPathFn` must call when finished\n     executing on a path "
                         }
                     },
                     "35": {
@@ -179,7 +179,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "66": {
@@ -200,7 +200,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "73": {
@@ -219,13 +219,13 @@
                                     38
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     }
                 },
                 "exports": 21
             },
-            "./src/chunked-line-reader.coffee": {
+            "src/chunked-line-reader.coffee": {
                 "objects": {
                     "0": {
                         "5": {
@@ -304,13 +304,14 @@
                                     39
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "22": {
                         "0": {
                             "type": "class",
                             "name": "ChunkedLineReader",
+                            "superClass": "Readable",
                             "bindingType": "exports",
                             "classProperties": [
                                 [
@@ -401,8 +402,7 @@
                                     31
                                 ]
                             ],
-                            "bindingType": "classProperty",
-                            "doc": null
+                            "bindingType": "classProperty"
                         }
                     },
                     "28": {
@@ -423,7 +423,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "31": {
@@ -442,7 +442,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "37": {
@@ -461,13 +461,13 @@
                                     17
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     }
                 },
                 "exports": 22
             },
-            "./src/chunked-scanner.coffee": {
+            "src/chunked-scanner.coffee": {
                 "objects": {
                     "0": {
                         "18": {
@@ -491,6 +491,7 @@
                         "0": {
                             "type": "class",
                             "name": "ChunkedScanner",
+                            "superClass": "ChunkedExecutor",
                             "bindingType": "exports",
                             "classProperties": [],
                             "prototypeProperties": [
@@ -542,8 +543,7 @@
                                     8,
                                     1
                                 ]
-                            ],
-                            "doc": null
+                            ]
                         }
                     },
                     "8": {
@@ -564,7 +564,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "15": {
@@ -583,7 +583,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "19": {
@@ -602,13 +602,13 @@
                                     14
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     }
                 },
                 "exports": 3
             },
-            "./src/multi-process-search.coffee": {
+            "src/multi-process-search.coffee": {
                 "objects": {
                     "0": {
                         "4": {
@@ -719,7 +719,7 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "30": {
@@ -741,7 +741,7 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "36": {
@@ -762,7 +762,7 @@
                                     33
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "43": {
@@ -781,7 +781,7 @@
                                     30
                                 ]
                             ],
-                            "doc": null
+                            "doc": " Private: Scan and emit jsonified list of paths on stdout. Each line is a list.\n\\0\\n inidicates that it's done. "
                         }
                     },
                     "82": {
@@ -800,7 +800,7 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "128": {
@@ -821,13 +821,13 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     }
                 },
                 "exports": 194
             },
-            "./src/path-filter.coffee": {
+            "src/path-filter.coffee": {
                 "objects": {
                     "0": {
                         "1": {
@@ -982,7 +982,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "23": {
@@ -1084,7 +1084,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "58": {
@@ -1122,7 +1122,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "71": {
@@ -1144,7 +1144,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "81": {
@@ -1163,7 +1163,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "86": {
@@ -1185,13 +1185,13 @@
                                     12
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     }
                 },
                 "exports": 6
             },
-            "./src/path-replacer.coffee": {
+            "src/path-replacer.coffee": {
                 "objects": {
                     "0": {
                         "4": {
@@ -1243,8 +1243,7 @@
                                     2,
                                     29
                                 ]
-                            ],
-                            "doc": null
+                            ]
                         }
                     },
                     "3": {
@@ -1347,6 +1346,7 @@
                         "0": {
                             "type": "class",
                             "name": "ReplaceTransformer",
+                            "superClass": "Transform",
                             "classProperties": [],
                             "prototypeProperties": [
                                 [
@@ -1390,8 +1390,7 @@
                                     15,
                                     1
                                 ]
-                            ],
-                            "doc": null
+                            ]
                         }
                     },
                     "15": {
@@ -1414,13 +1413,14 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "27": {
                         "0": {
                             "type": "class",
                             "name": "PathReplacer",
+                            "superClass": "EventEmitter",
                             "bindingType": "exports",
                             "classProperties": [],
                             "prototypeProperties": [
@@ -1467,8 +1467,7 @@
                                     28,
                                     35
                                 ]
-                            ],
-                            "doc": null
+                            ]
                         }
                     },
                     "30": {
@@ -1492,7 +1491,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "48": {
@@ -1516,13 +1515,13 @@
                                     31
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     }
                 },
                 "exports": 27
             },
-            "./src/path-scanner.coffee": {
+            "src/path-scanner.coffee": {
                 "objects": {
                     "0": {
                         "4": {
@@ -1638,6 +1637,7 @@
                         "0": {
                             "type": "class",
                             "name": "PathScanner",
+                            "superClass": "EventEmitter",
                             "bindingType": "exports",
                             "classProperties": [],
                             "prototypeProperties": [
@@ -1762,7 +1762,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "76": {
@@ -1783,7 +1783,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "85": {
@@ -1804,7 +1804,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "95": {
@@ -1825,7 +1825,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "108": {
@@ -1844,7 +1844,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "111": {
@@ -1863,13 +1863,13 @@
                                     38
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     }
                 },
                 "exports": 35
             },
-            "./src/path-searcher.coffee": {
+            "src/path-searcher.coffee": {
                 "objects": {
                     "0": {
                         "4": {
@@ -2051,6 +2051,7 @@
                         "0": {
                             "type": "class",
                             "name": "PathSearcher",
+                            "superClass": "EventEmitter",
                             "bindingType": "exports",
                             "classProperties": [],
                             "prototypeProperties": [
@@ -2191,7 +2192,7 @@
                                     1
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "214": {
@@ -2214,13 +2215,13 @@
                                     5
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     }
                 },
                 "exports": 79
             },
-            "./src/scandal.coffee": {
+            "src/scandal.coffee": {
                 "objects": {
                     "0": {
                         "4": {
@@ -2446,13 +2447,13 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "\nThis CLI is mainly for benchmarking. While there may be useful data output to\nthe console, it will probably change. The options will probably change as\nwell.\n"
                         }
                     }
                 },
                 "exports": 44
             },
-            "./src/single-process-search.coffee": {
+            "src/single-process-search.coffee": {
                 "objects": {
                     "0": {
                         "15": {
@@ -2544,7 +2545,7 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "20": {
@@ -2568,7 +2569,7 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "27": {
@@ -2589,7 +2590,7 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "55": {
@@ -2614,7 +2615,7 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "62": {
@@ -2635,7 +2636,7 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     },
                     "87": {
@@ -2656,7 +2657,7 @@
                                     0
                                 ]
                             ],
-                            "doc": null
+                            "doc": "~Private~"
                         }
                     }
                 },

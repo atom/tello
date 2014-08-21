@@ -1,6 +1,6 @@
 fs = require 'fs'
 {digest} = require '../src/digester'
-MetaDoc = require 'donna'
+Donna = require 'donna'
 CoffeeScript = require 'coffee-script'
 
 describe 'digest', ->
@@ -449,7 +449,7 @@ class Parser
 
   constructor: ->
     @slugs = {}
-    @parser = new MetaDoc.Parser()
+    @parser = new Donna.Parser()
 
   generateDigest: ->
     slugs = []
@@ -468,6 +468,6 @@ class Parser
       files: {}
 
     @parser.parseContent(fileContents, filename)
-    metadata = new MetaDoc.Metadata(packageJson, @parser)
+    metadata = new Donna.Metadata(packageJson, @parser)
     metadata.generate(CoffeeScript.nodes(fileContents))
-    MetaDoc.populateSlug(slug, filename, metadata)
+    Donna.populateSlug(slug, filename, metadata)
