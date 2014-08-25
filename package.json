@@ -23,7 +23,8 @@
   "homepage": "http://atom.github.io/tello",
   "dependencies": {
     "atomdoc": "~0.3",
-    "underscore": "~1.6"
+    "underscore": "~1.6",
+    "optimist": "~0.6"
   },
   "devDependencies": {
     "jasmine-focused": "1.x",
