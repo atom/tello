@@ -32,6 +32,8 @@ class Digester
     sections = @filterSectionsForRowRange(classEntity.range[0][0], classEntity.range[1][0])
     classMethods = @extractEntities(sections, classEntity.classProperties, 'function')
     instanceMethods = @extractEntities(sections, classEntity.prototypeProperties, 'function')
+    classProperties = @extractEntities(sections, classEntity.classProperties, 'primitive')
+    instanceProperties = @extractEntities(sections, classEntity.prototypeProperties, 'primitive')
 
     # Only sections that are used should be in the output
     filteredSections = []
@@ -51,6 +53,8 @@ class Digester
       sections: filteredSections
       classMethods: classMethods
       instanceMethods: instanceMethods
+      classProperties: classProperties
+      instanceProperties: instanceProperties
     }, _.pick(classDoc, parsedAttributes...)
 
   digestEntity: (sections, entity, entityPosition) ->

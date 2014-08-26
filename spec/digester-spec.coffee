@@ -101,6 +101,8 @@ describe 'digest', ->
             sections : []
             classMethods : []
             instanceMethods: []
+            classProperties: []
+            instanceProperties: []
 
   describe 'src link generation', ->
     describe 'when there are multiple packages', ->
@@ -163,6 +165,8 @@ describe 'digest', ->
               srcUrl: 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L2'
               sections : []
               classMethods : []
+              classProperties: []
+              instanceProperties: []
               instanceMethods: [{
                 visibility : 'Public'
                 name : 'somefunction'
@@ -204,6 +208,8 @@ describe 'digest', ->
             description : 'Some class '
             srcUrl: 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L2'
             sections : []
+            classProperties: []
+            instanceProperties: []
             classMethods : [{
               visibility : 'Public'
               name : 'aClassFunction'
@@ -440,7 +446,45 @@ describe 'digest', ->
         srcUrl: null
       }]
 
-# Yeah, recreating some biscotto stuff here...
+  describe 'properties', ->
+    it 'outputs docs for properties', ->
+      file = """
+        # Public: Some class
+        class Something
+          # Public: Class prop
+          @classProperty: null
+
+          # Public: Instance prop
+          instanceProperty: null
+
+          # Public: this is a function
+          someFunction: ->
+      """
+      json = Parser.generateDigest file,
+        filename: 'file1.coffee'
+        packageJson:
+          name: 'somerepo'
+          repository: 'https://github.com/atom/somerepo.git'
+          version: '2.3.4'
+
+      expect(json.classes.Something.instanceProperties).toEqualJson [{
+        visibility : 'Public'
+        name : 'instanceProperty'
+        sectionName : null
+        srcUrl : 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L7'
+        summary : 'Instance prop '
+        description : 'Instance prop '
+      }]
+      expect(json.classes.Something.classProperties).toEqualJson [{
+        visibility : 'Public'
+        name : 'classProperty'
+        sectionName : null
+        srcUrl : 'https://github.com/atom/somerepo/blob/v2.3.4/file1.coffee#L4'
+        summary : 'Class prop '
+        description : 'Class prop '
+      }]
+
+# Yeah, recreating some donna stuff here...
 class Parser
   @generateDigest: (fileContents, options) ->
     parser = new Parser
