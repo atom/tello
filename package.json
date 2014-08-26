@@ -22,7 +22,7 @@
   },
   "homepage": "http://atom.github.io/tello",
   "dependencies": {
-    "atomdoc": "~0.3",
+    "atomdoc": "~1.0",
     "underscore": "~1.6",
     "optimist": "~0.6"
   },
