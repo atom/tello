@@ -35,7 +35,7 @@
     "grunt-shell": "~0.2.2",
     "grunt-coffeelint": "0.0.6",
     "rimraf": "~2.1",
-    "donna": "~0.0",
+    "donna": "~1.0",
     "coffee-script": ">= 1.6.2"
   }
 }
