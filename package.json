@@ -1,6 +1,6 @@
 {
   "name": "tello",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Digests biscotto metadata",
   "main": "./lib/tello.js",
   "scripts": {
