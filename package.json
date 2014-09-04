@@ -7,6 +7,9 @@
     "test": "grunt test",
     "prepublish": "grunt clean lint coffee"
   },
+  "bin": {
+    "tello": "./bin/tello"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/atom/tello.git"
