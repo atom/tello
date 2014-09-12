@@ -446,6 +446,34 @@ describe 'digest', ->
         srcUrl: null
       }]
 
+    it 'handles sections that only have properties', ->
+      file = """
+        # Public: Some class
+        class Something
+          ###
+          Section: Methods
+          ###
+
+          # Public: A method
+          someMethod: (key, options) ->
+
+          ###
+          Section: Props
+          ###
+
+          # Public: a property thing
+          someProp: 1000
+      """
+      json = Parser.generateDigest(file)
+
+      expect(json.classes.Something.sections).toEqualJson [{
+        name: 'Methods'
+        description: ''
+      },{
+        name: 'Props'
+        description: ''
+      }]
+
   describe 'properties', ->
     it 'outputs docs for properties', ->
       file = """

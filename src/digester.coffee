@@ -38,7 +38,7 @@ class Digester
     # Only sections that are used should be in the output
     filteredSections = []
     for section in sections
-      for method in classMethods.concat instanceMethods
+      for method in classMethods.concat(instanceMethods).concat(classProperties).concat(instanceProperties)
         if section.name is method.sectionName
           filteredSections.push(_.pick section, 'name', 'description')
           break
