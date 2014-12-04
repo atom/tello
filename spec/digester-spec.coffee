@@ -18,6 +18,24 @@ describe 'digest', ->
     expect(json.classes.Something.instanceMethods[0].arguments.length).toBe 1
     expect(json.classes.Something.instanceMethods[0].arguments[0].children.length).toBe 1
 
+  it 'generates titled method arguments', ->
+    file = """
+      # Public: Some class
+      class Something
+        # Public: this is a function
+        #
+        # ## Arguments: A title
+        #
+        # * `argument` arg
+        #   * `argument` arg
+        someFunction: ->
+    """
+    json = Parser.generateDigest(file)
+    method = json.classes.Something.instanceMethods[0]
+    expect(method.titledArguments.length).toBe 1
+    expect(method.titledArguments[0].title).toBe 'A title'
+    expect(method.titledArguments[0].arguments.length).toBe 1
+
   it 'generates examples', ->
     file = """
       # Public: Some class

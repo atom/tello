@@ -62,8 +62,8 @@ class Digester
     return unless doc?
 
     parsedAttributes = [
-      'visibility', 'summary', 'description',
-      'arguments', 'events', 'examples', 'returnValues'
+      'visibility', 'summary', 'description', 'arguments',
+      'titledArguments', 'events', 'examples', 'returnValues'
     ]
 
     _.extend {
