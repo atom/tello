@@ -1,5 +1,5 @@
 fs = require 'fs'
-{digest} = require '../src/digester'
+{digest} = require './digester'
 
 getArgs = ->
   optimist = require('optimist')
