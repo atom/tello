@@ -98,6 +98,34 @@ describe 'digest', ->
     expect(json.classes.Something.instanceMethods[0].events.length).toBe 1
     expect(json.classes.Something.instanceMethods[0].events[0].description).toBe 'a method event'
 
+  it 'ignores return statements in class-level documentation', ->
+    file = """
+      # Essential: Summary.
+      #
+      # ## \`method1()\`
+      #
+      # Returns a {String}.
+      #
+      # ## \`method2()\`
+      #
+      # Returns a {Number}.
+      class Person
+        someFn: ->
+    """
+    json = Parser.generateDigest file
+    expect(json.classes.Person.summary).toBe "Summary."
+    expect(json.classes.Person.description.trim()).toBe """
+    Summary.
+
+    ## \`method1()\`
+
+    Returns a {String}.
+
+    ## \`method2()\`
+
+    Returns a {Number}.
+    """
+
   describe 'when a class has a super class', ->
     it 'generates links to github based on repo and version', ->
       file = """

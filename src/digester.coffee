@@ -26,7 +26,7 @@ class Digester
     {classes}
 
   digestClass: (classEntity) ->
-    classDoc = @docFromDocString(classEntity.doc)
+    classDoc = @docFromDocString(classEntity.doc, {parseReturns: false})
     return unless classDoc
 
     sections = @filterSectionsForRowRange(classEntity.range[0][0], classEntity.range[1][0])
@@ -118,8 +118,8 @@ class Digester
       return section.name if row > section.startRow
     null
 
-  docFromDocString: (docString) ->
-    classDoc = atomdoc.parse(docString) if docString?
+  docFromDocString: (docString, options) ->
+    classDoc = atomdoc.parse(docString, options) if docString?
     if classDoc and classDoc.isPublic()
       classDoc
     else
